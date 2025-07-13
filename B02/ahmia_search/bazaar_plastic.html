@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bazaar Plastic - Counterfeits Store</title>
+    <style>
+        body {
+            background: #2d2d2d;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background: #232323;
+            border-bottom: 3px solid #ff9000;
+            padding: 0;
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            height: 80px;
+        }
+        .logo {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 2.5rem;
+            color: #ff9000;
+            letter-spacing: 3px;
+            font-weight: bold;
+            line-height: 1;
+        }
+        .navbar {
+            display: flex;
+            gap: 35px;
+        }
+        .navbar a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding-bottom: 3px;
+            transition: color 0.2s;
+        }
+        .navbar a.active, .navbar a:hover {
+            color: #ff9000;
+            border-bottom: 2px solid #ff9000;
+        }
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 30px 0 30px;
+            position: relative;
+        }
+        .escrow-img {
+            display: block;
+            width: 110px;
+            max-width: 25vw;
+            background: #232323;
+            border-radius: 8px;
+            padding: 7px;
+            box-shadow: 0 0 8px #0006;
+            margin: 0 0 20px auto; /* Biar gambar di kanan atas konten, tapi tidak absolute */
+        }
+        .desc {
+            margin-top: 20px;
+            margin-bottom: 40px;
+            font-size: 1.3rem;
+        }
+        .desc2 {
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+        .flex-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 32px; /* jarak antara teks dan gambar */
+        }
+        .flex-row .desc-group {
+            flex: 1 1 0;
+            min-width: 0;
+        }
+        .escrow-img {
+            width: 110px;
+            max-width: 25vw;
+            background: #232323;
+            border-radius: 8px;
+            padding: 7px;
+            box-shadow: 0 0 8px #0006;
+            margin-top: 0;
+        }
+        @media (max-width: 700px) {
+            .flex-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .escrow-img {
+                margin: 0 auto 18px auto;
+                display: block;
+            }
+        }
+        .currency-title {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+        }
+        .currency-title span {
+            color: #ff9000;
+            font-weight: bold;
+        }
+        .currency-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        .currency-box {
+            background: #232323;
+            border: 3px solid #ff9000;
+            border-radius: 8px;
+            width: 260px;
+            height: 150px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            transition: box-shadow 0.2s;
+        }
+        .currency-box:hover {
+            box-shadow: 0 0 15px #ff9000aa;
+        }
+        .currency-code {
+            font-size: 2.8rem;
+            color: #ff9000;
+            font-weight: bold;
+        }
+        .currency-name {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-top: 10px;
+        }
+        @media (max-width: 900px) {
+            .header-content, .main-container { padding: 0 10px; }
+            .escrow-img { position: static; display: block; margin: 0 auto 30px auto; }
+        }
+        @media (max-width: 600px) {
+            .currency-grid { flex-direction: column; align-items: center; }
+            .header-content { flex-direction: column; height: auto; gap: 10px; }
+            .logo { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">BAZAAR<br>PLASTIC</div>
+            <nav class="navbar">
+                <a href="#" class="active">Counterfeits</a>
+                <a href="#">ABOUT</a>
+                <a href="#">INFO</a>
+                <a href="#">CONTACT</a>
+            </nav>
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="flex-row">
+            <div class="desc-group">
+              <div class="desc">
+                Bazaar Plastic is known as one of the largest Counterfeits Stores.
+              </div>
+              <div class="desc2">
+                All transactions pass through the Escrow service. This is how normal credit card processing works, and it provides the buyer with a level of protection because they can dispute a transaction that went wrong.
+              </div>
+            </div>
+            <img src="images/safescrowbadge.jpg" alt="Safescrow Vendor" class="escrow-img">
+          </div>
+        <div class="currency-title">
+            CHOOSE <span>CURRENCY:</span>
+        </div>
+        <div class="currency-grid">
+            <div class="currency-box">
+                <div class="currency-code">EUR</div>
+                <div class="currency-name">European Euro</div>
+            </div>
+            <div class="currency-box">
+                <div class="currency-code">USD</div>
+                <div class="currency-name">US Dollar</div>
+            </div>
+            <div class="currency-box">
+                <div class="currency-code">GBP</div>
+                <div class="currency-name">Pound Sterling</div>
+            </div>
+            <div class="currency-box">
+                <div class="currency-code">CAD</div>
+                <div class="currency-name">Canadian Dollar</div>
+            </div>
+            <div class="currency-box">
+                <div class="currency-code">CNY</div>
+                <div class="currency-name">Chinese Yuan</div>
+            </div>
+            <div class="currency-box">
+                <div class="currency-code">AUD</div>
+                <div class="currency-name">Australian Dollar</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

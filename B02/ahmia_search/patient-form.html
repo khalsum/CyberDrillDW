@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Pre-Transplant Record</title>
+    <style>
+        body {
+            background: #111;
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .form-header {
+            text-align: center;
+            margin-top: 32px;
+            margin-bottom: 32px;
+        }
+        .form-header h1 {
+            font-size: 2.7rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .form-header p {
+            color: #ccc;
+            font-size: 1.1rem;
+        }
+        .form-container {
+            background: #181818;
+            border-radius: 16px;
+            max-width: 700px;
+            margin: 0 auto 32px auto;
+            box-shadow: 0 2px 16px #0008;
+            padding: 36px 24px 24px 24px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            color: #fff;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 22px;
+            border: none;
+            border-radius: 6px;
+            background: #292929;
+            color: #fff;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        input:focus, select:focus, textarea:focus {
+            outline: 2px solid #4fc3f7;
+        }
+        textarea {
+            min-height: 60px;
+            resize: vertical;
+        }
+        .note {
+            color: #ccc;
+            font-size: 1rem;
+            margin-bottom: 18px;
+        }
+        .note b {
+            color: #fff;
+        }
+        .submit-btn {
+            width: 100%;
+            background: #3ecf4a;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 16px 0;
+            font-size: 1.4rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        .submit-btn:hover {
+            background: #2ea93a;
+        }
+        @media (max-width: 700px) {
+            .form-container { padding: 18px 6px 18px 6px; }
+            .form-header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-header">
+        <h1>Patient Pre-Transplant Record</h1>
+        <p>Please fill out the required details before proceeding to payment.</p>
+    </div>
+    <form class="form-container" id="patientForm">
+        <label for="fullname">Full Name:</label>
+        <input type="text" id="fullname" name="fullname" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="0" max="120" required>
+
+        <label for="bloodtype">Blood Type:</label>
+        <select id="bloodtype" name="bloodtype" required>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+        </select>
+
+        <label for="organ">Required Organ:</label>
+        <select id="organ" name="organ" required>
+            <option value="Heart">Heart</option>
+            <option value="Liver">Liver</option>
+            <option value="Kidneys">Kidneys</option>
+            <option value="Lungs">Lungs</option>
+            <option value="Pancreas">Pancreas</option>
+            <option value="Intestine">Intestine</option>
+            <option value="Skin">Skin</option>
+            <option value="Bone Marrow">Bone Marrow</option>
+            <option value="Cornea">Cornea</option>
+            <option value="Blood Bag">Blood Bag</option>
+        </select>
+
+        <label for="sex">Sex:</label>
+        <select id="sex" name="sex" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+        </select>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="medication">Do you take any daily medication?</label>
+        <input type="text" id="medication" name="medication">
+
+        <label for="problems">What health problems do you face?</label>
+        <textarea id="problems" name="problems"></textarea>
+
+        <label for="operation">Operation Option:</label>
+        <select id="operation" name="operation" required>
+            <option value="clinic">Perform the surgery in our clinic (U$2000)</option>
+            <option value="custom">Have our doctor perform at your chosen location (U$3000+)</option>
+        </select>
+
+        <div class="note"><b>Note:</b> The next step is the payment via Bitcoin only. Please make sure you have Bitcoin ready for the payment.</div>
+        <button type="submit" class="submit-btn">Proceed to Payment</button>
+    </form>
+
+    <script>
+        document.getElementById('patientForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const orderData = {
+                fullname: formData.get('fullname'),
+                age: formData.get('age'),
+                bloodtype: formData.get('bloodtype'),
+                organ: formData.get('organ'),
+                sex: formData.get('sex'),
+                email: formData.get('email'),
+                medication: formData.get('medication'),
+                problems: formData.get('problems'),
+                operation: formData.get('operation')
+            };
+            
+            // Store order data in sessionStorage
+            sessionStorage.setItem('orderData', JSON.stringify(orderData));
+            
+            // Redirect to payment page
+            window.location.href = 'payment.html';
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MayVaneDay Studios</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000 url('images/bgmay.jpg') center center/cover no-repeat fixed;
+            color: #fff;
+            font-family: 'Fira Mono', 'Consolas', 'Courier New', monospace;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: row;
+            min-height: 100vh;
+        }
+        .header-box {
+            background: rgba(0,0,0,0.92);
+            border-radius: 0;
+            padding: 18px 24px 24px 24px;
+            margin-bottom: 52px;
+            text-align: center;
+            color: #fff;
+            font-family: inherit;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            box-shadow: 0 2px 12px #0008;
+            width: 420px;
+            max-width: 90vw;
+            margin: 32px auto 0 100px;
+        }
+
+        .left-panel {
+            padding: 0;
+            min-width: 320px;
+            max-width: 400px;
+            flex: 1 1 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            margin-left: 0;
+            color: #fff;
+        }
+
+        .books-box {
+            background: rgba(0,0,0,0.92);
+            border-radius: 0;
+            padding: 18px 24px 18px 24px;
+            margin-top: 48px;
+            box-shadow: 0 2px 12px #0008;
+            width: 420px;
+            max-width: 90vw;
+            margin-left: 100px;
+        }
+        .left-panel *, .left-panel a, .left-panel .section-title, .left-panel .book-year {
+            color: #fff !important;
+        }
+        .title {
+            font-size: 2rem;
+            font-family: inherit;
+            text-align: center;
+            margin-bottom: 24px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+        .section {
+            margin-bottom: 18px;
+        }
+        .section-title {
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 16px 0 8px 0;
+            letter-spacing: 1px;
+        }
+        .book-list li {
+            margin-bottom: 4px;
+            font-size: 0.98rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .book-year {
+            color: #ccc;
+            font-size: 0.98rem;
+            margin-left: 10px;
+            min-width: 48px;
+            text-align: right;
+            font-family: inherit;
+        }
+        @media (max-width: 900px) {
+            .container { flex-direction: column; }
+            .left-panel { min-width: 0; max-width: 98vw; padding: 18px 4vw 12px 4vw; }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="left-panel">
+            <div class="header-box">Welcome to MayVaneDay Studios</div>
+            <div class="books-box">
+                <div class="section" style="font-size:1.3rem; font-weight:500; margin-bottom:18px;">My books:</div>
+                <div class="section">
+                    <div class="section-title">Poetry</div>
+                    <ul class="book-list">
+                        <li><a href="#">Employee Recognizes that the Information is Unique and of Peculiar Value</a> <span class="book-year">(2025)</span></li>
+                        <li><a href="#">Ultrawhite</a> <span class="book-year">(2024)</span></li>
+                        <li><a href="#">The Eschaton Eminence</a> <span class="book-year">(2023)</span></li>
+                        <li><a href="#">The World Is Not Enough</a> <span class="book-year">(2023)</span></li>
+                        <li><a href="#">Three Years In Absentia</a> <span class="book-year">(2022)</span></li>
+                        <li><a href="#">Mori's Mirror and The Adoration Corporation</a> <span class="book-year">(2022)</span></li>
+                        <li><a href="#">Hydra</a> <span class="book-year">(2021)</span></li>
+                        <li><a href="#">Mori's Mirror and The Poetry Factory</a> <span class="book-year">(2021)</span></li>
+                    </ul>
+                </div>
+                <div class="section">
+                    <div class="section-title">Fiction</div>
+                    <ul class="book-list">
+                        <li><a href="#">In Separation</a> <span class="book-year">(2020)</span></li>
+                        <li><a href="#">The Viridian Shipping Company</a> <span class="book-year">(2019)</span></li>
+                        <li><a href="#">Living Wasteland</a> <span class="book-year">(2019)</span></li>
+                        <li><a href="#">The Duality Of Mankind</a> <span class="book-year">(2018)</span></li>
+                        <li><a href="#">Me Before You</a> <span class="book-year">(2018)</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

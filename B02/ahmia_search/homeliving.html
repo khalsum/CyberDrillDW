@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeLiving Market - Toko Perabotan & Rumah Tangga</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            background: #f6f7fb;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .main-header {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+            padding: 0 0 0 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .main-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 18px 32px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.7rem;
+            color: #2d4059;
+            font-weight: bold;
+        }
+        .logo img {
+            height: 36px;
+        }
+        .search-bar {
+            flex: 1;
+            margin: 0 32px;
+            display: flex;
+            align-items: center;
+            max-width: 500px;
+        }
+        .search-bar input {
+            width: 100%;
+            padding: 12px 18px;
+            border-radius: 24px 0 0 24px;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            outline: none;
+        }
+        .search-bar button {
+            background: #fbb034;
+            color: #fff;
+            border: none;
+            border-radius: 0 24px 24px 0;
+            padding: 12px 22px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .search-bar button:hover {
+            background: #ffb84d;
+        }
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .header-actions .icon-btn {
+            background: #f6f7fb;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: #2d4059;
+            position: relative;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .header-actions .icon-btn:hover {
+            background: #fbb034;
+            color: #fff;
+        }
+        .cart-count {
+            position: absolute;
+            top: 6px;
+            right: 8px;
+            background: #fbb034;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 0.8rem;
+            padding: 2px 7px;
+        }
+        .header-actions .login-btn, .header-actions .register-btn {
+            background: #fff;
+            border: 1px solid #fbb034;
+            color: #fbb034;
+            border-radius: 18px;
+            padding: 7px 18px;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-left: 6px;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .header-actions .login-btn:hover, .header-actions .register-btn:hover {
+            background: #fbb034;
+            color: #fff;
+        }
+        /* Kategori Card */
+        .categories-bar {
+            background: #fff;
+            padding: 18px 0 10px 0;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.03);
+            margin-bottom: 18px;
+        }
+        .categories-list {
+            display: flex;
+            gap: 18px;
+            overflow-x: auto;
+            padding: 0 32px;
+            justify-content: center;
+        }
+        .category-card {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+            min-width: 120px;
+            max-width: 140px;
+            flex: 0 0 auto;
+            text-align: center;
+            padding: 18px 10px 10px 10px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        .category-card:hover {
+            border: 2px solid #fbb034;
+            box-shadow: 0 4px 16px rgba(251,176,52,0.13);
+        }
+        .category-card img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            margin-bottom: 8px;
+        }
+        .category-card span {
+            color: #2d4059;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        /* Banner Promo */
+        .promo-banner {
+            display: flex;
+            gap: 18px;
+            overflow-x: auto;
+            padding: 0 32px 18px 32px;
+            margin-bottom: 18px;
+            justify-content: center;
+        }
+        .promo-banner img {
+            border-radius: 16px;
+            width: 380px;
+            height: 120px;
+            object-fit: cover;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+        }
+        /* Produk Grid */
+        .products-section {
+            padding: 0 32px 32px 32px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 22px;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+            padding: 16px 12px 12px 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .product-card:hover {
+            box-shadow: 0 8px 32px rgba(251,176,52,0.13);
+            transform: translateY(-6px) scale(1.03);
+        }
+        .product-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        .product-card h4 {
+            font-size: 1rem;
+            color: #2d4059;
+            margin-bottom: 4px;
+        }
+        .product-card .price {
+            color: #fbb034;
+            font-size: 1.05rem;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+        .product-card .promo-label {
+            background: #fbb034;
+            color: #fff;
+            font-size: 0.8rem;
+            border-radius: 8px;
+            padding: 2px 8px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-weight: bold;
+        }
+        .product-card button {
+            background: #2d4059;
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            padding: 7px 18px;
+            font-size: 0.97rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.2s;
+        }
+        .product-card button:hover {
+            background: #fbb034;
+            color: #fff;
+        }
+        @media (max-width: 700px) {
+            .main-header .container, .products-section, .promo-banner, .categories-list {
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            .products-grid {
+                grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            }
+            .promo-banner img {
+                width: 220px;
+                height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/1046/1046857.png" alt="HomeLiving Market"/>
+                HomeLiving Market
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Cari produk perabotan, alat dapur, elektronik...">
+                <button><i class="fas fa-search"></i></button>
+            </div>
+            <div class="header-actions">
+                <button class="icon-btn"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></button>
+                <button class="icon-btn"><i class="fas fa-heart"></i></button>
+                <button class="login-btn">Masuk</button>
+                <button class="register-btn">Daftar</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Kategori Card -->
+    <nav class="categories-bar">
+        <div class="categories-list">
+            <div class="category-card"><img src="https://cdn-icons-png.flaticon.com/512/1046/1046857.png"><span>Furniture</span></div>
+            <div class="category-card"><img src="https://cdn-icons-png.flaticon.com/512/3075/3075977.png"><span>Dapur & Bahan</span></div>
+            <div class="category-card"><img src="https://cdn-icons-png.flaticon.com/512/2921/2921822.png"><span>Elektronik</span></div>
+            <div class="category-card"><img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png"><span>Dekorasi</span></div>
+            <div class="category-card"><img src="https://cdn-icons-png.flaticon.com/512/2917/2917995.png"><span>Kebersihan</span></div>
+            <div class="category-card"><img src="https://cdn-icons-png.flaticon.com/512/1046/1046857.png"><span>Lainnya</span></div>
+        </div>
+    </nav>
+
+    <!-- Banner Promo -->
+    <div class="promo-banner">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="Promo 1">
+        <img src="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=600&q=80" alt="Promo 2">
+        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=600&q=80" alt="Promo 3">
+    </div>
+
+    <!-- Produk Grid -->
+    <section class="products-section">
+        <div style="font-size:1.2rem;font-weight:bold;margin-bottom:12px;">Diskon Spesial Hari Ini</div>
+        <div class="products-grid">
+            <div class="product-card">
+                <span class="promo-label">Diskon 20%</span>
+                <img src="images/produk/sofa-minimalis.jpg" alt="Sofa Minimalis">
+                <h4>Sofa Minimalis</h4>
+                <div class="price">Rp 1.200.000</div>
+                <button>Tambah ke Keranjang</button>
+            </div>
+            <div class="product-card">
+                <span class="promo-label">Diskon 15%</span>
+                <img src="images/produk/blender-philips.jpg" alt="Blender Philips">
+                <h4>Blender Philips</h4>
+                <div class="price">Rp 450.000</div>
+                <button>Tambah ke Keranjang</button>
+            </div>
+            <div class="product-card">
+                <span class="promo-label">Diskon 10%</span>
+                <img src="images/produk/tv-led-32.jpg" alt="TV LED 32 Inci">
+                <h4>TV LED 32"</h4>
+                <div class="price">Rp 1.800.000</div>
+                <button>Tambah ke Keranjang</button>
+            </div>
+            <div class="product-card">
+                <img src="images/produk/lampu-hias.jpg" alt="Lampu Hias">
+                <h4>Lampu Hias</h4>
+                <div class="price">Rp 120.000</div>
+                <button>Tambah ke Keranjang</button>
+            </div>
+            <div class="product-card">
+                <img src="images/produk/vacuum-cleaner.jpg" alt="Vacuum Cleaner">
+                <h4>Vacuum Cleaner</h4>
+                <div class="price">Rp 900.000</div>
+                <button>Tambah ke Keranjang</button>
+            </div>
+            <div class="product-card">
+                <img src="images/produk/rak-serbaguna.jpg" alt="Rak Serbaguna">
+                <h4>Rak Serbaguna</h4>
+                <div class="price">Rp 350.000</div>
+                <button>Tambah ke Keranjang</button>
+            </div>
+            <div class="product-card">
+                <span class="promo-label">Diskon 25%</span>
+                <img src="images/produk/set-panci-stainless.jpg" alt="Set Panci Stainless">
+                <h4>Set Panci Stainless</h4>
+                <div class="price">Rp 299.000</div>
+                <button>Tambah ke Keranjang</button>
+            </div>
+            <div class="product-card">
+                <img src="images/produk/kulkas-2pintu.jpg" alt="Kulkas 2 Pintu">
+                <h4>Kulkas 2 Pintu</h4>
+                <div class="price">Rp 2.900.000</div>
+                <button>Tambah ke Keranjang</button>
+            </div>
+            <div class="product-card">
+                <span class="promo-label">Diskon 5%</span>
+                <img src="images/produk/jam-dinding-unik.jpg" alt="Jam Dinding Unik">
+                <h4>Jam Dinding Unik</h4>
+                <div class="price">Rp 85.000</div>
+                <button>Tambah ke Keranjang</button>
+            </div>
+            <div class="product-card">
+                <img src="images/produk/sapu-otomatis.jpg" alt="Sapu Otomatis">
+                <h4>Sapu Otomatis</h4>
+                <div class="price">Rp 210.000</div>
+                <button>Tambah ke Keranjang</button>
+            </div>
+            <div class="product-card">
+                <img src="images/produk/meja-belajar-lipat.jpg" alt="Meja Belajar Lipat">
+                <h4>Meja Belajar Lipat</h4>
+                <div class="price">Rp 175.000</div>
+                <button>Tambah ke Keranjang</button>
+            </div>
+            <div class="product-card">
+                <span class="promo-label">Diskon 30%</span>
+                <img src="images/produk/set-pisau-dapur.jpg" alt="Set Pisau Dapur">
+                <h4>Set Pisau Dapur</h4>
+                <div class="price">Rp 99.000</div>
+                <button>Tambah ke Keranjang</button>
+            </div>
+        </div>
+    </section>
+</body>
+</html> 

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoLine - Buy & Sell Monero</title>
+    <style>
+        body {
+            background: #f5f5f5;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            color: #222;
+        }
+        .navbar {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.04);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 32px;
+            height: 64px;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.7rem;
+            font-weight: bold;
+            color: #222;
+            letter-spacing: 1px;
+        }
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            margin-right: 10px;
+        }
+        .navbar-links {
+            display: flex;
+            gap: 18px;
+        }
+        .navbar-links a {
+            color: #222;
+            text-decoration: none;
+            font-size: 1.08rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .navbar-links a:hover {
+            background: #f0f0f0;
+        }
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .btn-signup {
+            background: #21953b;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 22px;
+            font-size: 1.08rem;
+            font-weight: 400;
+            cursor: pointer;
+            margin-right: 4px;
+            transition: background 0.2s;
+        }
+        .btn-signup:hover {
+            background: #176c2a;
+        }
+        .btn-login {
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 22px;
+            font-size: 1.08rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-login:hover {
+            background: #12529b;
+        }
+        .main-content {
+            max-width: 1200px;
+            margin: 36px auto 0 auto;
+            padding: 0 16px;
+        }
+        .flex-row {
+            display: flex;
+            gap: 36px;
+            justify-content: center;
+            align-items: flex-start;
+            margin-bottom: 36px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(44,62,80,0.07);
+            padding: 0;
+            min-width: 340px;
+            max-width: 370px;
+            width: 100%;
+        }
+        .tab-header {
+            display: flex;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .tab-btn {
+            flex: 1;
+            text-align: center;
+            padding: 16px 0 10px 0;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1976d2;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            transition: border 0.2s, color 0.2s;
+        }
+        .tab-btn.active {
+            border-bottom: 3px solid #1976d2;
+            color: #1976d2;
+            background: #f9f9f9;
+        }
+        .tab-content {
+            padding: 22px 24px 24px 24px;
+        }
+        .form-group {
+            margin-bottom: 16px;
+        }
+        .form-label {
+            font-size: 1rem;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .form-select, .form-input {
+            width: 100%;
+            padding: 8px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+            margin-bottom: 8px;
+        }
+        .form-select {
+            background: #fafbfc;
+        }
+        .btn-search {
+            width: 100%;
+            background: #1976d2;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.2s;
+        }
+        .btn-search:hover {
+            background: #12529b;
+        }
+        .card-dark {
+            background: #23232a;
+            color: #ffe082;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px rgba(44,62,80,0.07);
+            padding: 24px 32px 24px 32px;
+            min-width: 370px;
+            max-width: 420px;
+            width: 100%;
+            margin-left: 0;
+        }
+        .card-dark h3 {
+            color: #ffe082;
+            font-size: 1.3rem;
+            margin-bottom: 18px;
+            font-weight: bold;
+            text-align: left;
+        }
+        .features-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 36px;
+        }
+        .features-col {
+            flex: 1 1 180px;
+            min-width: 180px;
+        }
+        .features-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .features-list li {
+            color: #b2ffb2;
+            font-size: 1.01rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .features-list li span {
+            color: #ffe082;
+            margin-left: 7px;
+        }
+        .features-list .check {
+            color: #4caf50;
+            font-size: 1.2em;
+            margin-right: 7px;
+        }
+        .offers-section {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+            margin-bottom: 36px;
+            padding: 0 0 24px 0;
+        }
+        .offers-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            padding: 20px 0 0 8px;
+            margin-bottom: 0;
+        }
+        .offers-title small {
+            color: #888;
+            font-size: 1rem;
+            font-weight: 400;
+            margin-left: 8px;
+            font-style: italic;
+        }
+        .offers-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 18px;
+            table-layout: fixed;
+        }
+        .offers-table th, .offers-table td {
+            padding: 10px 8px;
+            text-align: left;
+            font-size: 1rem;
+            vertical-align: middle;
+            word-break: break-word;
+        }
+        .offers-table th.seller, .offers-table td.seller { width: 22%; }
+        .offers-table th.payment, .offers-table td.payment { width: 32%; }
+        .offers-table th.price, .offers-table td.price { width: 18%; text-align: right; }
+        .offers-table th.limits, .offers-table td.limits { width: 18%; text-align: right; }
+        .offers-table th.action, .offers-table td.action { width: 10%; text-align: center; }
+        .offers-table th {
+            background: #f5f5f5;
+            color: #222;
+            font-size: 1.03rem;
+            font-weight: 600;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .offers-table td {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            font-size: 1rem;
+        }
+        .offers-table tr:last-child td {
+            border-bottom: none;
+        }
+        .seller-link {
+            color: #1976d2;
+            text-decoration: underline;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .status-dot {
+            display: inline-block;
+            width: 11px;
+            height: 11px;
+            background: #4caf50;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        .seen {
+            color: #4caf50;
+            font-size: 0.95rem;
+            margin-left: 2px;
+        }
+        .btn-buy {
+            background: #ffb300;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 6px 18px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .btn-buy:hover {
+            background: #e09c00;
+        }
+        .offers-table td span[style*="background:#f5f5f5"] {
+            display: inline-block;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 2px;
+            padding: 3px 10px;
+        }
+        .offers-table td span[style*="color:#388e3c"] {
+            font-size: 1.08em;
+            font-weight: 600;
+            background: #f8faf7;
+            border-radius: 10px;
+            padding: 5px 14px;
+            display: inline-block;
+        }
+        @media (max-width: 900px) {
+            .flex-row { flex-direction: column; gap: 24px; align-items: stretch; }
+            .card, .card-dark { min-width: 100%; max-width: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+            <span class="logo"><img class="logo-icon" src="images/molinelogo.jpg" alt="MoLine Logo">MoLine</span>
+            <div class="navbar-links">
+                <a href="#">Buy monero</a>
+                <a href="#">Sell monero</a>
+                <a href="#">Post an ad</a>
+                <a href="#">Help ▼</a>
+            </div>
+        </div>
+        <div class="navbar-right">
+            <button class="btn-signup">SIGN UP</button>
+            <button class="btn-login">LOGIN</button>
+        </div>
+    </nav>
+    <div class="main-content">
+        <div class="flex-row">
+            <div class="card">
+                <div class="tab-header">
+                    <button class="tab-btn active">BUY</button>
+                    <button class="tab-btn">SELL</button>
+                </div>
+                <div class="tab-content">
+                    <div class="form-group">
+                        <label class="form-label">Amount</label>
+                        <input class="form-input" type="text" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <select class="form-select">
+                            <option>All currencies</option>
+                            <option>EUR</option>
+                            <option>USD</option>
+                            <option>IDR</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-select">
+                            <option>All countries</option>
+                            <option>Germany</option>
+                            <option>Indonesia</option>
+                            <option>USA</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select class="form-select">
+                            <option>All online offers</option>
+                            <option>Only trusted</option>
+                        </select>
+                    </div>
+                    <button class="btn-search">Search</button>
+                </div>
+            </div>
+            <div class="card-dark">
+                <h3>Why use our service</h3>
+                <div class="features-list">
+                    <div class="features-col">
+                        <ul>
+                            <li><span class="check">✔</span>Non-custodial wallet</li>
+                            <li><span class="check">✔</span>Open source code</li>
+                            <li><span class="check">✔</span>XMR ↔ fiat</li>
+                            <li><span class="check">✔</span>Onion domain</li>
+                            <li><span class="check">✔</span>I2P domain</li>
+                            <li><span class="check">✔</span>Android app available</li>
+                            <li><span class="check">✔</span>Session bot available</li>
+                            <li><span class="check">✔</span>Sponsored ads</li>
+                        </ul>
+                    </div>
+                    <div class="features-col">
+                        <ul>
+                            <li><span class="check">✔</span>Strict no-KYC policy</li>
+                            <li><span class="check">✔</span>No personal information needed</li>
+                            <li><span class="check">✔</span>Strict no-logging policy</li>
+                            <li><span class="check">✔</span>No JavaScript needed</li>
+                            <li><span class="check">✔</span>No registration needed</li>
+                            <li><span class="check">✔</span>Peer to peer trading</li>
+                            <li><span class="check">✔</span>Escrow available</li>
+                            <li><span class="check">✔</span>Import reputation</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offers-section">
+            <div class="offers-title">Buy Monero online <small>Sponsored</small></div>
+            <table class="offers-table">
+                <thead>
+                    <tr>
+                        <th class="seller">Seller</th>
+                        <th class="payment">Payment method</th>
+                        <th class="price">Price / XMR</th>
+                        <th class="limits">Limits</th>
+                        <th class="action"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="seller"><a class="seller-link" href="#">postman<br><span style="color:#888;font-size:0.97em;">(6727; 100%)</span></a><br><span class="status-dot"></span><span class="seen">Seen 1 minutes ago</span></td>
+                        <td class="payment"><span style="background:#f5f5f5;padding:4px 10px;border-radius:6px;">🇩🇪 Cash by mail</span><br><span style="color:#888;font-size:0.97em;">Deutsche Adresse <span style="color:#c00;">Schneller Release</span></span></td>
+                        <td class="price" style="color:#388e3c;font-size:1.15em;font-weight:600;">284.67 EUR</td>
+                        <td class="limits">40 - 6000 EUR</td>
+                        <td class="action"><button class="btn-buy">BUY</button></td>
+                    </tr>
+                    <tr>
+                        <td class="seller"><a class="seller-link" href="#">postman<br><span style="color:#888;font-size:0.97em;">(6727; 100%)</span></a><br><span class="status-dot"></span><span class="seen">Seen 1 minutes ago</span></td>
+                        <td class="payment"><span style="background:#f5f5f5;padding:4px 10px;border-radius:6px;">🇪🇺 SEPA (EU) bank transfer</span></td>
+                        <td class="price" style="color:#388e3c;font-size:1.15em;font-weight:600;">289.67 EUR</td>
+                        <td class="limits">70 - 440 EUR</td>
+                        <td class="action"><button class="btn-buy">BUY</button></td>
+                    </tr>
+                    <tr>
+                        <td class="seller"><a class="seller-link" href="#">Lyd<br><span style="color:#888;font-size:0.97em;">(0308672)</span></a><br><span class="status-dot"></span><span class="seen">Seen 1 minutes ago</span></td>
+                        <td class="payment"><span style="background:#f5f5f5;padding:4px 10px;border-radius:6px;">💱 Cryptocurrency</span></td>
+                        <td class="price" style="color:#388e3c;font-size:1.15em;font-weight:600;">0.00308672</td>
+                        <td class="limits">0.0012 - 0.5 XMR</td>
+                        <td class="action"><button class="btn-buy">BUY</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="offers-section" style="margin-top:36px;">
+            <div class="offers-title">Buy Monero online</div>
+            <table class="offers-table">
+                <thead>
+                    <tr>
+                        <th class="seller">Seller</th>
+                        <th class="payment">Payment method</th>
+                        <th class="price">Price / XMR</th>
+                        <th class="limits">Limits</th>
+                        <th class="action"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="seller"><a class="seller-link" href="#">jmcabc2008<br><span style="color:#888;font-size:0.97em;">(26622*; 100%)</span></a><br><span class="status-dot"></span><span class="seen">Seen 9 minutes ago</span></td>
+                        <td class="payment"><span style="background:#f5f5f5;padding:4px 10px;border-radius:6px;">🇰🇷 <a class="seller-link" href="#">National bank transfer</a></span><br><span style="color:#888;font-size:0.97em;">**korean bank transfer ** Sell Bitcoin safely Payment Methods:</span></td>
+                        <td class="price" style="color:#388e3c;font-size:1.15em;font-weight:600;">376211.73 KRW</td>
+                        <td class="limits">100000 - 100000000000 KRW</td>
+                        <td class="action"><button class="btn-buy">BUY</button></td>
+                    </tr>
+                    <tr>
+                        <td class="seller"><a class="seller-link" href="#">XMR2theWorld<br><span style="color:#888;font-size:0.97em;">(442; 99%)</span></a><br><span class="status-dot"></span><span class="seen">Seen 24 minutes ago</span></td>
+                        <td class="payment"><span style="background:#f5f5f5;padding:4px 10px;border-radius:6px;">ℝ <a class="seller-link" href="#">Revolut</a></span></td>
+                        <td class="price" style="color:#388e3c;font-size:1.15em;font-weight:600;">224.68 GBP</td>
+                        <td class="limits">100 - 1000 GBP</td>
+                        <td class="action"><button class="btn-buy">BUY</button></td>
+                    </tr>
+                    <tr>
+                        <td class="seller"><a class="seller-link" href="#">Crypto-desk<br><span style="color:#888;font-size:0.97em;">(687; 99%)</span></a><br><span class="status-dot"></span><span class="seen">Seen 3 minutes ago</span></td>
+                        <td class="payment"><span style="background:#f5f5f5;padding:4px 10px;border-radius:6px;">🇬🇧 <a class="seller-link" href="#">Cryptocurrency</a></span><br>SWAP ANY CRYPTO FOR XMR</td>
+                        <td class="price" style="color:#388e3c;font-size:1.15em;font-weight:600;">229.17 GBP</td>
+                        <td class="limits">50 - any amount GBP</td>
+                        <td class="action"><button class="btn-buy">BUY</button></td>
+                    </tr>
+                    <tr>
+                        <td class="seller"><a class="seller-link" href="#">Captain_Fantstic<br><span style="color:#888;font-size:0.97em;">(83; 100%)</span></a><br><span class="status-dot"></span><span class="seen">Seen 3 minutes ago</span></td>
+                        <td class="payment"><span style="background:#f5f5f5;padding:4px 10px;border-radius:6px;">🇩🇪 <a class="seller-link" href="#">Cryptocurrency</a></span><br>Any crypto accepted</td>
+                        <td class="price" style="color:#388e3c;font-size:1.15em;font-weight:600;">268.85 EUR</td>
+                        <td class="limits">10 - any amount EUR</td>
+                        <td class="action"><button class="btn-buy">BUY</button></td>
+                    </tr>
+                    <tr>
+                        <td class="seller"><a class="seller-link" href="#">Krystalwhitney<br><span style="color:#888;font-size:0.97em;">(572; 98%)</span></a><br><span class="status-dot"></span><span class="seen">Seen 3 minutes ago</span></td>
+                        <td class="payment"><span style="background:#f5f5f5;padding:4px 10px;border-radius:6px;">🇺🇸 <a class="seller-link" href="#">Cryptocurrency</a></span><br>Any crypto accepted</td>
+                        <td class="price" style="color:#388e3c;font-size:1.15em;font-weight:600;">316.73 USD</td>
+                        <td class="limits">10 - 500 USD</td>
+                        <td class="action"><button class="btn-buy">BUY</button></td>
+                    </tr>
+                    <tr>
+                        <td class="seller"><a class="seller-link" href="#">Happy_hour<br><span style="color:#888;font-size:0.97em;">(101; 100%)</span></a><br><span class="status-dot"></span><span class="seen">Seen 3 minutes ago</span></td>
+                        <td class="payment"><span style="background:#f5f5f5;padding:4px 10px;border-radius:6px;">🇺🇸 <a class="seller-link" href="#">Cryptocurrency</a></span><br>BTC, ETH, XRP, SOL, BNB, LTC USDT....</td>
+                        <td class="price" style="color:#388e3c;font-size:1.15em;font-weight:600;">316.73 USD</td>
+                        <td class="limits">20 - 5000 USD</td>
+                        <td class="action"><button class="btn-buy">BUY</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html> 

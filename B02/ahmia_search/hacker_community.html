@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hacker Community</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: #000 url('images/bg.jpg') right center no-repeat;
+            background-size: cover;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: #bfffe6;
+            position: relative;
+        }
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.85);
+            z-index: 0;
+        }
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 40px 20px 30px 20px;
+            text-align: center;
+        }
+        .logo {
+            margin: 30px auto 10px auto;
+            width: 220px;
+        }
+        .logo img {
+            width: 100%;
+            max-width: 220px;
+        }
+        .main-title {
+            font-size: 2.7rem;
+            font-weight: bold;
+            color: #7fffd4;
+            margin-top: 10px;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            text-shadow: 0 2px 10px #000a;
+            border-bottom: 3px solid #7fffd4;
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+        .subtitle {
+            color: #ff2222;
+            font-size: 1.1rem;
+            margin: 18px 0 18px 0;
+            font-weight: 500;
+        }
+        .score-table {
+            width: 100%;
+            max-width: 520px;
+            margin: 0 auto 30px auto;
+            border-collapse: collapse;
+            background: rgba(0,0,0,0.7);
+            border-radius: 10px;
+            overflow: hidden;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 16px #000a;
+        }
+        .score-table th, .score-table td {
+            padding: 7px 10px;
+            text-align: center;
+        }
+        .score-table th {
+            color: #fff;
+            font-weight: bold;
+            border-bottom: 2px solid #7fffd4;
+            background: #111;
+        }
+        .score-table td {
+            color: #bfffe6;
+            border-bottom: 1px solid #222;
+        }
+        .score-table tr:last-child td {
+            border-bottom: none;
+        }
+        .score-green {
+            background: #00d900;
+            color: #000;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        .score-yellow {
+            background: #ffe600;
+            color: #222;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        .score-red {
+            background: #ff2222;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        .avail-green {
+            background: #00d900;
+            color: #000;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        .avail-yellow {
+            background: #ffe600;
+            color: #222;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        .avail-red {
+            background: #ff2222;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 4px;
+        }
+        @media (max-width: 800px) {
+            .container { max-width: 98vw; }
+            .logo { width: 150px; }
+            .main-title { font-size: 2rem; }
+            .score-table { font-size: 0.95rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="logo">
+            <img src="images/hackerlogo.png" alt="Hacker Community Logo" />
+        </div>
+        <div class="main-title">Hacker Community</div>
+        <div class="subtitle">The Most Advanced and Trustable Hackers of the Darknet</div>
+        <table class="score-table">
+            <tr>
+                <th>[ Index ]</th>
+                <th>[ Contractor ]</th>
+                <th>[ Score ]</th>
+                <th>[ Availability ]</th>
+            </tr>
+            <tr>
+                <td>1</td><td>DPHS</td><td class="score-green">100</td><td class="avail-green">&#9608;</td>
+            </tr>
+            <tr>
+                <td>2</td><td>Root Dogs</td><td class="score-green">95</td><td class="avail-green">&#9608;</td>
+            </tr>
+            <tr>
+                <td>3</td><td>Odin</td><td class="score-green">95</td><td class="avail-yellow">&#9608;</td>
+            </tr>
+            <tr>
+                <td>4</td><td>Fat Rat</td><td class="score-yellow">70</td><td class="avail-green">&#9608;</td>
+            </tr>
+            <tr>
+                <td>5</td><td>Core-Lan</td><td class="score-green">100</td><td class="avail-red">&#9608;</td>
+            </tr>
+            <tr>
+                <td>6</td><td>Dark Spell</td><td class="score-yellow">75</td><td class="avail-green">&#9608;</td>
+            </tr>
+            <tr>
+                <td>7</td><td>Invisible Touch</td><td class="score-yellow">80</td><td class="avail-green">&#9608;</td>
+            </tr>
+            <tr>
+                <td>8</td><td>Zoop</td><td class="score-green">85</td><td class="avail-green">&#9608;</td>
+            </tr>
+        </table>
+        <div style="max-width:700px;margin:0 auto 30px auto;padding:22px 18px 18px 18px;background:rgba(0,0,0,0.7);border:2px solid #7fffd4;border-radius:8px;color:#fff;box-sizing:border-box;">
+            <div style="color:#ff2222;font-size:1.3rem;font-weight:bold;margin-bottom:12px;">Services we Provide:</div>
+            <div style="font-size:1.08rem;line-height:1.6;margin-bottom:18px;">
+                Hacking web servers, computers and smartphones. Malware development for any OS. Social Media hacking. Change grades in schools and universities. Getting private information from someone. Exploits, Trojans, Backdoors, Android RAT, Keyloggers. SQL injections attacks. DoS attacks. Phishing attacks to get passwords from selected targets. Forensics data analysis. Password Recovery. And every other projects related to Hacking.
+            </div>
+            <div style="color:#ff2222;font-weight:bold;margin-bottom:8px;">Have Project / Problem ? Contact Us:</div>
+            <div style="background:#111;color:#7fffd4;display:inline-block;padding:4px 18px;border-radius:4px;font-weight:bold;font-size:1.1rem;">comm4hack@tormail.pro</div>
+        </div>
+        <div style="max-width:700px;margin:0 auto 30px auto;padding:18px 18px 10px 18px;background:#fff;border-radius:8px;color:#222;box-sizing:border-box;font-family:monospace;">
+<pre style="white-space:pre-wrap;word-break:break-all;margin:0;font-size:1rem;">
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+mDMEZjZxNhYJKwYBBAHaRw8BAQdA03QcGaG5YbPU88s3g5y5PpJAzY0KmUgvY0VP5
+Ge1JRBq0kEhhY2t1ci1BbDBd2t1dW5pdHkgPGNvbW4A0GFja0B0b3JtYWlsLnBybzI
+kwQFTgoAOxYhBIPyH8gNrGVu+UTAuJ9nti3PyyqdaBQJmNnE2AhsDBQsJCAcCAiIC
+BhUKCQgLAgwWAgMBAh4HAheAAAoJED9nti3PyyqdaQkBAPkTykbINSLeMvhCK6Q
+vxaq1YiKwXjloHjbZ1LeNf yJA0KvSnySaF4E6ktX/8SNTSKwbjXSMVBumg51
+zPKMArg4BGY2cTYSciSAGQBl1UBQEBBOASAjzm+vnzq1tW1M2jcsy5CpwzXOl
+iC7CLtDkMjXqIAMBCa1EeAQYFgoATBHYbH8IpH8gNrGVu+UTAuJ9nti3PyyqdaBQJ
+NnE2AhsMAAoJED9nti3PyyqdaLwsA/RxVUA09VFEmJ5MUc9d3C6Dtfup2Kx3zhYmpZ
+Hnx0VPK7AQDHKb3mTTCfyJfo/k1T29IKxcNEVCu9S3CFpidSnXe6BQ==
+=ul8C
+-----END PGP PUBLIC KEY BLOCK-----
+<b>83F2 1FC8 0DAC 6BD4 F944/C0BA 3F67 B62D CFCA A76A</b>
+===Using PGP encryption will secure your communication===
+</pre>
+        </div>
+    </div>
+</body>
+</html> 

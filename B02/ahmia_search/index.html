@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmia — Search Tor Hidden Services</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('./images/ahmiabg.jpg');
+            /* Fallback path jika diakses dari root project */
+            /* background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/ahmia_search/images/ahmiabg.jpg'); */
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            color: #c0c0c0;
+            line-height: 1.5;
+            margin: 0;
+            min-height: 100vh;
+        }
+        
+        /* Header/navigation bar */
+        .top-bar {
+            padding: 3px 0;
+            background-color: #303030;
+        }
+        
+        .container {
+            width: 100%;
+            padding: 0 20px;
+        }
+        
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .left-links {
+            display: flex;
+        }
+        
+        .right-links {
+            display: flex;
+        }
+        
+        .nav-links a {
+            color: #c0c0c0;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 12px;
+        }
+        
+        /* Main content */
+        .main-content {
+            padding: 20px 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .onion-address {
+            font-size: 20px;
+            color: rgba(192, 192, 192, 0.4);
+            margin: 0 0 10px 0;
+            text-align: left;
+            margin-left: 60px;
+            position: absolute;
+            top: 140px;
+            left: 0;
+        }
+        
+        .search-section {
+            text-align: left;
+            margin: 0;
+            padding-left: 40px;
+            position: relative;
+        }
+        
+        .search-section h1 {
+            font-size: 40px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 35px;
+            margin-top: 0;
+            padding-top: 40px;
+        }
+        
+        .search-container {
+            display: flex;
+            max-width: 100%;
+            width: 425px;
+            margin: 0 0 30px 0;
+            position: relative;
+        }
+        
+        .search-container:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+        
+        #search-input {
+            width: 100%;
+            padding: 10px;
+            font-size: 14px;
+            border: none;
+            height: 39px;
+        }
+        
+        button[type="submit"] {
+            background-color: #c7ff70;
+            border: none;
+            color: black;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 14px;
+            height: 39px;
+        }
+        
+        /* Info text */
+        .info-text {
+            max-width: 700px;
+            margin-left: 40px;
+            font-size: 14px;
+            line-height: 1.5;
+            text-align: left;
+        }
+        
+        .info-text p {
+            margin-bottom: 15px;
+        }
+        
+        .info-text a {
+            color: #c7ff70;
+            text-decoration: none;
+        }
+        
+        .info-text a:hover {
+            text-decoration: underline;
+        }
+        
+        .onion-link {
+            word-break: break-all;
+            color: #c7ff70;
+        }
+        
+        .blacklist-link {
+            color: #294957;
+        }
+        
+        /* Disclaimer */
+        .disclaimer {
+            text-align: center;
+            background-color: rgba(255, 0, 0, 0.2);
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            max-width: 600px;
+            z-index: 100;
+            font-size: 11px;
+            color: #ff9999;
+        }
+        
+        .disclaimer p {
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="container">
+            <div class="nav-links">
+                <div class="left-links">
+                    <a href="#">About Ahmia</a>
+                    <a href="#">Add Service</a>
+                </div>
+                <div class="right-links">
+                    <a href="#">Contact</a>
+                    <a href="#">Blacklist</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+    <div class="container">
+            <div class="onion-address">
+                ahmia.fi — juhanurnihxlp77nkq76byazeldy2hlmqvht2epvl5ankdibsot4csyd.onion
+            </div>
+
+            <div class="search-section">
+                <h1>Ahmia</h1>
+                <form id="search-form" action="search-results.html" method="get">
+                    <div class="search-container">
+                        <input type="text" id="search-input" name="q">
+                        <button type="submit">Search</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="info-text">
+                <p>Ahmia searches hidden services on the Tor network. To access these hidden services, you need the <a href="#">Tor browser bundle</a>. Abuse material is not allowed on Ahmia. See our <a href="#" class="blacklist-link">service blacklist</a> and report abuse material if you find it in the index. It will be removed as soon as possible.</p>
+                
+                <p>For more about Ahmia, see <a href="#">indexing information</a>, <a href="#">contribute to the source code</a>.</p>
+                <p><a href="#">The Tor Project</a></p>
+                <p>Onion service: <a href="#" class="onion-link">juhanurnihxlp77nkq76byazeldy2hlmqvht2epvl5ankdibsot4csyd.onion</a></p>
+            </div>
+            
+            <div class="disclaimer">
+                <p><strong>CATATAN:</strong> Situs ini hanya tiruan untuk kebutuhan pendidikan</p>
+                <p><strong>NOTE:</strong> This is only a replica for educational purposes</p>
+                </div>
+                </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchForm = document.getElementById('search-form');
+            const searchInput = document.getElementById('search-input');
+            
+            if (searchForm) {
+                searchForm.addEventListener('submit', function(event) {
+                    const query = searchInput.value.trim().toLowerCase();
+                    if (query === 'dark market') {
+                        event.preventDefault();
+                        window.location.href = "search-results.html?q=" + encodeURIComponent(query);
+                    }
+                    // For other queries, the form will submit normally to search-results.html
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Products - Beautiful Shop</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --rich-black: #101820;
+            --gunmetal: #273443;
+            --cool-blue: #4A90E2;
+            --slate-gray: #8D99AE;
+            --ivory: #F2F2F2;
+            --danger-red: #E74C3C;
+            --blue-glow: rgba(74, 144, 226, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--rich-black);
+            color: var(--ivory);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */ 
+        .header {
+            background-image: url('header_web.jpeg');
+            background-size: cover;
+            background-position: center;
+            padding: 10px 0;
+            border-bottom: 2px solid var(--gunmetal);
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--ivory);
+            letter-spacing: 2px;
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.6), 0 0 20px rgba(74, 144, 226, 0.7);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--ivory);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            font-weight: 500;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background-color: var(--blue-glow);
+            color: var(--cool-blue);
+            transform: translateY(-2px);
+        }
+
+        /* Wishlist & Cart Styles */
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .header-actions button {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .header-actions .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -10px;
+            background: var(--danger-red);
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 12px;
+        }
+        .main-content { padding: 40px 0; }
+        .products-section h1 {
+            text-align: center;
+            font-size: 42px;
+            margin-bottom: 40px;
+        }
+        .product-list .product-item {
+            display: flex;
+            gap: 20px;
+            background-color: var(--gunmetal);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border: 1px solid var(--gunmetal);
+        }
+        .product-image {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+        .product-details { flex-grow: 1; }
+        .product-title { font-size: 28px; margin-bottom: 10px; }
+        .product-description { color: var(--slate-gray); margin-bottom: 15px; }
+        .product-price { font-size: 22px; color: var(--cool-blue); font-weight: bold; margin-bottom: 15px; }
+        .reviews-section {
+            border-top: 1px solid var(--slate-gray);
+            padding-top: 20px;
+        }
+        .reviews-section h4 { font-size: 20px; margin-bottom: 15px; }
+        .review {
+            border-bottom: 1px solid var(--rich-black);
+            padding: 15px 0;
+        }
+        .review:last-child { border-bottom: none; }
+        .review-author { font-weight: bold; margin-bottom: 5px; }
+        .review-rating .fa-star { color: #f39c12; }
+        .review-text { color: var(--slate-gray); }
+
+        .footer {
+            background-color: var(--gunmetal);
+            padding: 10px 0;
+            margin-top: 20px;
+            border-top: 2px solid var(--cool-blue);
+            text-align: center;
+            color: var(--slate-gray);
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Beautiful Shop</div>
+                <nav class="nav-links">
+                    <a href="beautifulshop.html">Home</a>
+                    <a href="categories.html">Categories</a>
+                    <a href="featured.html">Featured</a>
+                    <a href="contact.html">Contact</a>
+                </nav>
+                <div class="header-actions">
+                    <button id="wishlist-btn" title="Wishlist">🤍</button>
+                    <button id="cart-btn" title="Cart">🛒<span class="cart-count">0</span></button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="products-section container">
+            <h1>Our Products</h1>
+            <div class="product-list" id="product-list">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <p>© 2024 Beautiful Shop. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const allProducts = [
+            // Pharma
+            { title: "Premium Pharmaceuticals", price: 0.5, description: "High-quality medications and prescription drugs for various conditions.", image: "images/pharma1.jpg", rating: 4.8, reviews: [{author: 'User123', rating: 5, text: 'Top quality, fast and discreet delivery.'}, {author: 'User456', rating: 4, text: 'Very effective product, works as described.'}, {author: 'DocR', rating: 5, text: 'A reliable source for all my needs.'}] },
+            { title: "Generic Medications", price: 0.3, description: "Affordable, high-quality generic medications that offer the same effects as brand names.", image: "images/pharma2.jpg", rating: 4.5, reviews: [{author: 'User789', rating: 5, text: 'Great value for the price. Just as good as the expensive stuff.'}, {author: 'Saver1', rating: 4, text: 'Good alternative. I recommend it.'}] },
+            { title: "Stimulants - Focus Enhancers", price: 0.6, description: "Cognitive enhancement compounds for improved focus, alertness, and productivity.", image: "images/stim1.jpg", rating: 4.7, reviews: [{author: 'StudentA', rating: 5, text: 'Helped me ace my exams. Clean energy without the crash.'}, {author: 'WorkerB', rating: 4, text: 'Gives a solid boost to my workday.'}] },
+            
+            // Research
+            { title: "Research Chemicals - Crystal", price: 0.4, description: "Laboratory-grade research compounds in pure crystal form. For research purposes only.", image: "images/research1.jpg", rating: 4.9, reviews: [{author: 'ResearcherX', rating: 5, text: '99.9% purity as advertised. Excellent for lab work.'}, {author: 'ChemNerd', rating: 5, text: 'Consistent and reliable results every single time.'}] },
+            { title: "Research Chemicals - Liquid", price: 0.6, description: "High-purity chemical compounds in a stable liquid solution for easy measurement.", image: "images/research2.jpg", rating: 4.8, reviews: [{author: 'LabRat', rating: 5, text: 'Very potent, handle with care. Perfect for my experiments.'}, {author: 'SciGuy', rating: 4, text: 'Good solution, mixes well.'}] },
+            
+            // Pain
+            { title: "Pain Relief Medications", price: 0.7, description: "Potent and effective pain management solutions for acute and severe pain.", image: "images/pain1.jpg", rating: 4.7, reviews: [{author: 'UserPainFree', rating: 5, text: 'Finally, some real relief from my chronic pain. Thank you.'}, {author: 'User002', rating: 4, text: 'Works well, but be cautious with the dosage.'}] },
+            { title: "Chronic Pain Solutions", price: 0.8, description: "Specialized long-term pain management medications for those with chronic conditions.", image: "images/pain2.jpg", rating: 4.6, reviews: [{author: 'DailyUser', rating: 4, text: 'Manages my chronic pain better than anything else I have tried.'}, {author: 'Sufferer', rating: 5, text: 'This has been a life-saver for me.'}, {author: 'Reviewer3', rating: 4, text: 'Good, but be aware of the potential side effects.'}] },
+
+            // Sleep & Anxiety
+            { title: "Sleep Aids", price: 0.4, description: "Quality sleep medications and supplements to help you get a restful night.", image: "images/sleep1.jpg", rating: 4.6, reviews: [{author: 'GoodSleeper', rating: 5, text: 'Best sleep I have had in years. No next-day grogginess.'}, {author: 'NightOwl', rating: 4, text: 'Helped me regulate my sleep schedule.'}] },
+            { title: "Anxiety Relief Pills", price: 0.45, description: "Fast-acting anxiety medication for managing panic attacks and general anxiety.", image: "images/anxiety1.jpg", rating: 4.8, reviews: [{author: 'CalmNow', rating: 5, text: 'Works wonders for my panic attacks. Very calming effect.'}, {author: 'ZenMaster', rating: 5, text: 'Effective and reliable. I feel much more at ease.'}, {author: 'NervousNell', rating: 4, text: 'Good for my day-to-day general anxiety.'}] }
+        ];
+
+        function renderProducts() {
+            const productList = document.getElementById('product-list');
+            let content = '';
+
+            allProducts.forEach(product => {
+                let reviewsHtml = '';
+                product.reviews.forEach(review => {
+                    reviewsHtml += `
+                        <div class="review">
+                            <p class="review-author">${review.author}</p>
+                            <div class="review-rating">${'★'.repeat(review.rating)}${'☆'.repeat(5-review.rating)}</div>
+                            <p class="review-text">"${review.text}"</p>
+                        </div>
+                    `;
+                });
+
+                content += `
+                    <div class="product-item">
+                        <img src="${product.image}" alt="${product.title}" class="product-image">
+                        <div class="product-details">
+                            <h3 class="product-title">${product.title}</h3>
+                            <p class="product-description">${product.description}</p>
+                            <p class="product-price">${product.price.toFixed(2)} BTC</p>
+                            <div class="reviews-section">
+                                <h4>User Reviews (${product.reviews.length})</h4>
+                                ${reviewsHtml}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            productList.innerHTML = content;
+        }
+
+        document.addEventListener('DOMContentLoaded', renderProducts);
+    </script>
+</body>
+</html> 

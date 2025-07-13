@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment - Cannabis Kingdom</title>
+    <style>
+        body {
+            background: #ededed url('https://www.transparenttextures.com/patterns/diamond-upholstery.png');
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header-bar {
+            background: #000;
+            color: #fff;
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 3rem;
+            letter-spacing: 2px;
+            padding: 18px 0 8px 0;
+        }
+        .main-box {
+            background: #fff;
+            max-width: 800px;
+            margin: 30px auto;
+            border-radius: 8px;
+            box-shadow: 0 0 12px #bbb;
+            border: 1px solid #ccc;
+        }
+        .tab-bar {
+            background: #e0e0e0;
+            border-bottom: 1px solid #bbb;
+            display: flex;
+            border-radius: 8px 8px 0 0;
+        }
+        .tab-bar div {
+            padding: 10px 24px;
+            font-weight: bold;
+            color: #444;
+            border-right: 1px solid #bbb;
+            cursor: pointer;
+        }
+        .tab-bar div:last-child {
+            border-right: none;
+        }
+        .tab-bar .active {
+            background: #fff;
+            border-bottom: 2px solid #fff;
+        }
+        .content {
+            padding: 28px 32px 32px 32px;
+        }
+        .content h1 {
+            font-size: 2rem;
+            margin: 0 0 18px 0;
+            font-weight: bold;
+            color: #222;
+        }
+        .order-summary {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid #e9ecef;
+        }
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        .order-label {
+            font-weight: 500;
+            color: #666;
+        }
+        .order-value {
+            font-weight: 600;
+            color: #333;
+        }
+        .price-breakdown {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid #e9ecef;
+        }
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+        .total-price {
+            border-top: 2px solid #3b8c3b;
+            padding-top: 15px;
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #3b8c3b;
+        }
+        .payment-methods {
+            margin-bottom: 25px;
+        }
+        .payment-method {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .payment-method:hover {
+            border-color: #3b8c3b;
+            background: #f0f8f0;
+        }
+        .payment-method.selected {
+            border-color: #3b8c3b;
+            background: #f0f8f0;
+        }
+        .payment-method-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+        .payment-icon {
+            width: 40px;
+            height: 40px;
+            background: #3b8c3b;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        .payment-info {
+            flex: 1;
+        }
+        .payment-name {
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .payment-desc {
+            font-size: 14px;
+            color: #666;
+        }
+        .bitcoin-address {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            word-break: break-all;
+            margin-top: 10px;
+            display: none;
+        }
+        .bitcoin-address.show {
+            display: block;
+        }
+        .copy-btn {
+            background: #3b8c3b;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        .copy-btn:hover {
+            background: #256d25;
+        }
+        .payment-actions {
+            text-align: center;
+        }
+        .pay-btn {
+            background: #3b8c3b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 15px 40px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-right: 15px;
+        }
+        .pay-btn:hover {
+            background: #256d25;
+        }
+        .pay-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        .cancel-btn {
+            background: #f8f9fa;
+            color: #666;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .cancel-btn:hover {
+            background: #e9ecef;
+        }
+        .status-message {
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 500;
+        }
+        .status-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        @media (max-width: 700px) {
+            .main-box { max-width: 98vw; }
+            .content { padding: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-bar">Cannabis Kingdom</div>
+    <div class="main-box">
+        <div class="tab-bar">
+            <div class="active">Payment</div>
+        </div>
+        <div class="content">
+            <h1>Complete Your Order</h1>
+            
+            <div class="order-summary">
+                <h3 style="margin-top: 0; color: #333;">📋 Order Summary</h3>
+                <div class="order-item">
+                    <span class="order-label">Product:</span>
+                    <span class="order-value" id="productName">-</span>
+                </div>
+                <div class="order-item">
+                    <span class="order-label">Quantity:</span>
+                    <span class="order-value" id="quantity">-</span>
+                </div>
+                <div class="order-item">
+                    <span class="order-label">Price:</span>
+                    <span class="order-value" id="price">-</span>
+                </div>
+            </div>
+            
+            <div class="price-breakdown">
+                <h3 style="margin-top: 0; color: #333;">💰 Price Breakdown</h3>
+                <div class="price-item">
+                    <span>Product Cost</span>
+                    <span id="productCost">-</span>
+                </div>
+                <div class="price-item">
+                    <span>Shipping Fee</span>
+                    <span>5 GBP</span>
+                </div>
+                <div class="price-item total-price">
+                    <span>Total Amount:</span>
+                    <span id="totalPrice">-</span>
+                </div>
+            </div>
+            
+            <div class="payment-methods">
+                <h3 style="margin-top: 0; color: #333;">💳 Payment Method</h3>
+                <div class="payment-method selected" onclick="selectPayment('bitcoin')">
+                    <div class="payment-method-header">
+                        <div class="payment-icon">₿</div>
+                        <div class="payment-info">
+                            <div class="payment-name">Bitcoin (BTC)</div>
+                            <div class="payment-desc">Secure cryptocurrency payment</div>
+                        </div>
+                    </div>
+                    <div class="bitcoin-address show" id="bitcoinAddress">
+                        bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh
+                    </div>
+                    <button class="copy-btn" onclick="copyAddress(event)">Copy Address</button>
+                </div>
+            </div>
+            
+            <div class="payment-actions">
+                <div id="statusMessage"></div>
+                <button class="pay-btn" id="payBtn" onclick="processPayment()">Confirm Payment</button>
+                <button class="cancel-btn" onclick="cancelPayment()">Cancel Order</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Get product data from sessionStorage
+        const productData = JSON.parse(sessionStorage.getItem('cannabisProductData') || '{}');
+        
+        // Initialize page
+        function initializePage() {
+            if (!productData.productName) {
+                showStatus('No product data found. Please start over.', 'error');
+                return;
+            }
+            
+            // Fill order details
+            document.getElementById('productName').textContent = productData.productName;
+            document.getElementById('quantity').textContent = productData.quantity;
+            document.getElementById('price').textContent = productData.price;
+            document.getElementById('productCost').textContent = productData.price;
+            
+            // Calculate total (assuming shipping is 5 GBP)
+            const priceText = productData.price;
+            const priceMatch = priceText.match(/(\d+)\s*GBP/);
+            if (priceMatch) {
+                const priceGBP = parseInt(priceMatch[1]);
+                const shippingFee = 5;
+                const totalGBP = priceGBP + shippingFee;
+                document.getElementById('totalPrice').textContent = `${totalGBP} GBP`;
+            }
+        }
+        
+        // Select payment method
+        function selectPayment(method) {
+            document.querySelectorAll('.payment-method').forEach(el => {
+                el.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+        }
+        
+        // Copy Bitcoin address
+        function copyAddress(event) {
+            event.stopPropagation();
+            const address = document.getElementById('bitcoinAddress').textContent;
+            navigator.clipboard.writeText(address).then(() => {
+                const btn = event.target;
+                btn.textContent = 'Copied!';
+                setTimeout(() => {
+                    btn.textContent = 'Copy Address';
+                }, 2000);
+            });
+        }
+        
+        // Process payment
+        function processPayment() {
+            const payBtn = document.getElementById('payBtn');
+            payBtn.disabled = true;
+            payBtn.textContent = 'Processing...';
+            
+            // Simulate payment processing
+            setTimeout(() => {
+                showStatus('Payment received! Processing your order...', 'success');
+                setTimeout(() => {
+                    // Clear product data
+                    sessionStorage.removeItem('cannabisProductData');
+                    // Redirect to success page or show success message
+                    alert('Payment successful! Your order will be shipped within 24 hours.');
+                    window.location.href = 'cannabiskingdom.html';
+                }, 2000);
+            }, 3000);
+        }
+        
+        // Cancel payment
+        function cancelPayment() {
+            if (confirm('Are you sure you want to cancel this order?')) {
+                sessionStorage.removeItem('cannabisProductData');
+                window.location.href = 'cannabiskingdom.html';
+            }
+        }
+        
+        // Show status message
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('statusMessage');
+            statusDiv.textContent = message;
+            statusDiv.className = `status-message ${type}`;
+        }
+        
+        // Initialize page when loaded
+        window.addEventListener('load', initializePage);
+    </script>
+</body>
+</html> 

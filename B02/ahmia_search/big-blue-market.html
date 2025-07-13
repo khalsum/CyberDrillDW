@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Big Blue Market - WorldWide Shipping</title>
+    <style>
+        body {
+            background: #e9e9ee;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+        .main-container {
+            max-width: 1200px;
+            margin: 24px auto;
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+            padding-bottom: 40px;
+            border: 6px solid #bdbdc7;
+        }
+        .header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #f5f5f7;
+            border-radius: 12px 12px 0 0;
+            padding: 18px 36px 10px 36px;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+        .logo {
+            width: 70px;
+            height: 70px;
+            background: #1976d2;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+        .header-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #232323;
+            letter-spacing: 1px;
+        }
+        .header-country {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .flag {
+            width: 70px;
+            height: 45px;
+            object-fit: contain;
+            border-radius: 6px;
+            border: 2px solid #fff;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.07);
+        }
+        .tabs {
+            display: flex;
+            background: #44454a;
+            border-radius: 0 0 8px 8px;
+            margin: 0 0 0 0;
+            padding-left: 36px;
+        }
+        .tab {
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            padding: 18px 38px 14px 38px;
+            border: none;
+            background: none;
+            cursor: pointer;
+            border-radius: 0 0 0 0;
+            transition: background 0.2s;
+        }
+        .tab.active {
+            background: #fff;
+            color: #1976d2;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            font-weight: 700;
+        }
+        .login-box {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            margin: 36px auto 0 auto;
+            max-width: 700px;
+            padding: 30px 36px 36px 36px;
+            border: 1.5px solid #e0e0e0;
+        }
+        .login-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: #444;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .login-title i {
+            color: #1976d2;
+        }
+        .login-desc {
+            font-size: 1rem;
+            color: #333;
+            margin-bottom: 18px;
+            text-align: justify;
+        }
+        .login-desc .highlight {
+            color: #1976d2;
+            font-weight: 600;
+        }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .login-form input[type="text"],
+        .login-form input[type="password"] {
+            padding: 12px 14px;
+            border-radius: 6px;
+            border: 1.5px solid #bdbdc7;
+            font-size: 1.1rem;
+            outline: none;
+        }
+        .login-form input[type="text"]:focus,
+        .login-form input[type="password"]:focus {
+            border-color: #1976d2;
+        }
+        .captcha-img {
+            width: 180px;
+            height: 60px;
+            object-fit: contain;
+            background: #fff;
+            border-radius: 6px;
+            margin-bottom: 6px;
+        }
+        .login-form input[type="submit"] {
+            background: #1976d2;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 0;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.2s;
+        }
+        .login-form input[type="submit"]:hover {
+            background: #0d47a1;
+        }
+        @media (max-width: 900px) {
+            .main-container { max-width: 99vw; }
+            .header-bar, .login-box { padding-left: 10px; padding-right: 10px; }
+            .tabs { padding-left: 10px; }
+        }
+        @media (max-width: 600px) {
+            .header-title { font-size: 1.3rem; }
+            .logo, .flag { width: 40px; height: 30px; }
+            .login-box { padding: 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div class="header-bar">
+            <div class="header-left">
+                <div class="logo">🌊</div>
+                <div class="header-title">Big Blue Market<br><span style="font-size:1.1rem;font-weight:400;letter-spacing:0.5px;">WorldWide Shipping</span></div>
+            </div>
+            <div class="header-country">
+                <img src="images/worldwide.jpg" alt="flag" class="flag">
+            </div>
+        </div>
+        <div class="tabs">
+            <button class="tab active">LOGIN</button>
+            <button class="tab">REGISTER</button>
+        </div>
+        <div class="login-box">
+            <div class="login-title"><i>🔑</i> Login to Big Blue Market</div>
+            <div class="login-desc">
+                Welcome to <b>Big Blue Market</b>! This is a global marketplace. Please login to access the marketplace. If you do not have an account, you can <span class="highlight">register</span> to get access to the listings. Registrations are free and open to everyone. If you have lost your password, please use the <span class="highlight">forgot password</span> form to reset your password.<br><br>
+                Selamat datang di <b>Big Blue Market</b>! Ini adalah marketplace global. Silakan login untuk mengakses marketplace. Kalau belum punya akun, kamu bisa <span class="highlight">daftar</span> untuk akses ke listing. Registrasi gratis dan terbuka untuk semua. Kalau lupa password, gunakan form <span class="highlight">lupa password</span> untuk reset password.
+            </div>
+            <form class="login-form">
+                <input type="text" placeholder="Username" required>
+                <input type="password" placeholder="Password" required>
+                <img src="images/captcha.jpg" alt="captcha" class="captcha-img">
+                <input type="text" placeholder="What's the captcha?" required>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+    </div>
+</body>
+</html> 

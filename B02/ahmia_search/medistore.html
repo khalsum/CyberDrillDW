@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MediStore - Apotek Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fa;
+            color: #333;
+            margin: 0;
+        }
+        .header {
+            background: #222c36;
+            color: #fff;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 54px;
+        }
+        .header .logo {
+            font-size: 28px;
+            color: #c7ff70;
+            font-weight: bold;
+            margin-left: 24px;
+            letter-spacing: 2px;
+        }
+        .header .menu {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-right: 32px;
+        }
+        .header .menu a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 15px;
+            margin-left: 10px;
+        }
+        .header .menu a:hover {
+            color: #c7ff70;
+        }
+        .header .user {
+            margin-left: 18px;
+            color: #c7ff70;
+            font-size: 15px;
+        }
+        .guideline {
+            background: #e3f6ff;
+            color: #1976d2;
+            padding: 10px 24px;
+            font-size: 15px;
+            border-bottom: 1px solid #b5e0f7;
+        }
+        .container {
+            display: flex;
+            max-width: 1300px;
+            margin: 28px auto 0 auto;
+            gap: 24px;
+        }
+        .sidebar {
+            width: 220px;
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+            padding: 16px 12px 16px 12px;
+            height: fit-content;
+        }
+        .search-box {
+            display: flex;
+            margin-bottom: 16px;
+        }
+        .search-box input {
+            flex: 1;
+            padding: 5px 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            font-size: 13px;
+            height: 28px;
+        }
+        .search-box button {
+            background: #c7ff70;
+            border: none;
+            color: #222c36;
+            padding: 0 10px;
+            border-radius: 0 4px 4px 0;
+            font-size: 15px;
+            cursor: pointer;
+            height: 28px;
+        }
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        .category-list li {
+            margin-bottom: 7px;
+        }
+        .category-list a {
+            color: #344054;
+            text-decoration: none;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+        .category-list .plus {
+            color: #1976d2;
+            font-weight: bold;
+            margin-right: 4px;
+        }
+        .category-list .badge {
+            background: #e3eafc;
+            color: #1976d2;
+            font-size: 11px;
+            border-radius: 8px;
+            padding: 1px 7px;
+            margin-left: 7px;
+        }
+        .top-vendors {
+            margin-top: 18px;
+            background: #f8f8fa;
+            border-radius: 8px;
+            padding: 10px 8px 8px 8px;
+            box-shadow: 0 1px 4px rgba(44,62,80,0.04);
+        }
+        .top-vendors h4 {
+            font-size: 14px;
+            margin-bottom: 8px;
+            color: #1976d2;
+        }
+        .top-vendors ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .top-vendors li {
+            margin-bottom: 6px;
+            font-size: 13px;
+        }
+        .top-vendors .vendor-link {
+            color: #1976d2;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        .top-vendors .vendor-badge {
+            background: #c7ff70;
+            color: #222c36;
+            font-size: 10px;
+            border-radius: 8px;
+            padding: 1px 6px;
+            margin-left: 5px;
+        }
+        .main-content {
+            flex: 1;
+        }
+        .featured-title {
+            font-size: 2.1rem;
+            font-weight: bold;
+            margin-bottom: 18px;
+            color: #222c36;
+            text-align: center;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(44,62,80,0.07);
+            padding: 0 0 12px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .product-card:hover {
+            box-shadow: 0 8px 32px rgba(44,62,80,0.13);
+            transform: translateY(-6px) scale(1.03);
+        }
+        .product-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 10px 10px 0 0;
+        }
+        .product-card .product-info {
+            padding: 12px 16px 0 16px;
+            width: 100%;
+        }
+        .product-card h4 {
+            font-size: 1.08rem;
+            color: #2b7a9a;
+            margin-bottom: 4px;
+            text-align: left;
+        }
+        .product-card .price {
+            color: #1976d2;
+            font-size: 1.01rem;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        .product-card .promo-label {
+            background: #c7ff70;
+            color: #222c36;
+            font-size: 0.8rem;
+            border-radius: 8px;
+            padding: 2px 8px;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-weight: bold;
+        }
+        .product-card .rating {
+            color: #fbb034;
+            font-size: 14px;
+            margin-bottom: 2px;
+        }
+        .product-card .desc {
+            color: #555;
+            font-size: 13px;
+            margin-bottom: 6px;
+        }
+        .product-card .shipping {
+            color: #1976d2;
+            font-size: 12px;
+            margin-bottom: 6px;
+        }
+        .product-card .info-list {
+            font-size: 12px;
+            color: #444;
+            margin-bottom: 4px;
+        }
+        .product-card .info-list span {
+            margin-right: 10px;
+        }
+        .product-card button {
+            background: #2b7a9a;
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            padding: 6px 16px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.2s;
+        }
+        .product-card button:hover {
+            background: #c7ff70;
+            color: #222c36;
+        }
+        @media (max-width: 1100px) {
+            .container { flex-direction: column; gap: 0; }
+            .sidebar { width: 100%; margin-bottom: 18px; }
+            .product-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 700px) {
+            .product-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <span class="logo">MediStore</span>
+        <div class="menu">
+            <a href="#">Home</a>
+            <a href="#">User-CP</a>
+            <a href="#">Support</a>
+            <a href="#">Pesan</a>
+            <a href="#">Logout</a>
+            <span class="user">Welcome, <b>user123</b></span>
+        </div>
+    </div>
+    <div class="guideline">Panduan pelanggan - hindari penipuan</div>
+    <div class="container">
+        <aside class="sidebar">
+            <form class="search-box">
+                <input type="text" placeholder="Cari produk..">
+                <button type="submit">🔍</button>
+            </form>
+            <ul class="category-list">
+                <li><a href="#"><span class="plus">+</span>Obat Bebas <span class="badge">1200</span></a></li>
+                <li><a href="#"><span class="plus">+</span>Obat Resep <span class="badge">850</span></a></li>
+                <li><a href="#"><span class="plus">+</span>Vitamin & Suplemen <span class="badge">430</span></a></li>
+                <li><a href="#"><span class="plus">+</span>Alat Kesehatan <span class="badge">210</span></a></li>
+                <li><a href="#"><span class="plus">+</span>Perawatan Tubuh <span class="badge">320</span></a></li>
+                <li><a href="#"><span class="plus">+</span>Lainnya <span class="badge">99</span></a></li>
+            </ul>
+            <div class="top-vendors">
+                <h4>Top Vendors</h4>
+                <ul>
+                    <li><a class="vendor-link" href="#">ApotekSehat</a> <span class="vendor-badge">L15</span></li>
+                    <li><a class="vendor-link" href="#">ObatMurah</a> <span class="vendor-badge">L14</span></li>
+                    <li><a class="vendor-link" href="#">VitaminPlus</a> <span class="vendor-badge">L13</span></li>
+                    <li><a class="vendor-link" href="#">MedikaStore</a> <span class="vendor-badge">L12</span></li>
+                    <li><a class="vendor-link" href="#">SehatBersama</a> <span class="vendor-badge">L11</span></li>
+                </ul>
+            </div>
+        </aside>
+        <div class="main-content">
+            <div class="featured-title">Featured Listings</div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <span class="promo-label">Diskon 10%</span>
+                    <img src="images/medistore/paracetamol.jpeg" alt="Paracetamol 500mg">
+                    <div class="product-info">
+                        <h4>Paracetamol 500mg</h4>
+                        <div class="info-list">
+                            <span class="price">Rp 12.000 / strip</span>
+                            <span>🚚 Jakarta</span>
+                            <span>Escrow</span>
+                        </div>
+                        <div class="rating">★★★★★ 4.9</div>
+                        <div class="desc">Obat penurun demam & pereda nyeri. Cocok buat keluarga.</div>
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <span class="promo-label">Best Seller</span>
+                    <img src="images/medistore/vitc.jpeg" alt="Vitamin C 1000mg">
+                    <div class="product-info">
+                        <h4>Vitamin C 1000mg</h4>
+                        <div class="info-list">
+                            <span class="price">Rp 25.000 / botol</span>
+                            <span>🚚 Bandung</span>
+                            <span>Escrow</span>
+                        </div>
+                        <div class="rating">★★★★★ 5.0</div>
+                        <div class="desc">Vitamin C dosis tinggi, bantu jaga daya tahan tubuh.</div>
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/medistore/amoxicilin.jpg" alt="Amoxicillin 500mg">
+                    <div class="product-info">
+                        <h4>Amoxicillin 500mg</h4>
+                        <div class="info-list">
+                            <span class="price">Rp 18.000 / strip</span>
+                            <span>🚚 Surabaya</span>
+                            <span>Escrow</span>
+                        </div>
+                        <div class="rating">★★★★☆ 4.7</div>
+                        <div class="desc">Antibiotik untuk infeksi bakteri. Wajib resep dokter.</div>
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/medistore/zinc.jpeg" alt="Suplemen Zink">
+                    <div class="product-info">
+                        <h4>Suplemen Zink</h4>
+                        <div class="info-list">
+                            <span class="price">Rp 30.000 / box</span>
+                            <span>🚚 Yogyakarta</span>
+                            <span>Escrow</span>
+                        </div>
+                        <div class="rating">★★★★☆ 4.8</div>
+                        <div class="desc">Suplemen mineral penting buat imun & metabolisme.</div>
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <span class="promo-label">Diskon 5%</span>
+                    <img src="images/medistore/ibuprofen.jpeg" alt="Ibuprofen 400mg">
+                    <div class="product-info">
+                        <h4>Ibuprofen 400mg</h4>
+                        <div class="info-list">
+                            <span class="price">Rp 15.000 / strip</span>
+                            <span>🚚 Medan</span>
+                            <span>Escrow</span>
+                        </div>
+                        <div class="rating">★★★★☆ 4.6</div>
+                        <div class="desc">Obat anti nyeri & anti radang. Biasa buat sakit kepala.</div>
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="images/medistore/multivitamin.jpg" alt="Multivitamin Anak">
+                    <div class="product-info">
+                        <h4>Multivitamin Anak</h4>
+                        <div class="info-list">
+                            <span class="price">Rp 22.000 / botol</span>
+                            <span>🚚 Semarang</span>
+                            <span>Escrow</span>
+                        </div>
+                        <div class="rating">★★★★★ 5.0</div>
+                        <div class="desc">Multivitamin rasa buah, biar anak makin sehat & aktif.</div>
+                        <button>Beli Sekarang</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="text-align:center;color:#888;font-size:13px;margin:30px 0 10px 0;">&copy; 2024 MediStore. Apotek online, gampang & hemat. Semua kebutuhan kesehatanmu ada di sini!</div>
+</body>
+</html> 

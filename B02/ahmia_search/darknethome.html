@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darknet Home</title>
+    <style>
+        body {
+            background: #232323;
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+        }
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 200px;
+            height: 100vh;
+            background: #232323;
+            padding: 0;
+            z-index: 10;
+        }
+        .sidebar h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+            padding: 16px 0 16px 16px;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .sidebar ul li {
+            padding: 7px 0 7px 16px;
+            font-size: 14px;
+            color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            letter-spacing: 0.2px;
+        }
+        .sidebar ul li:hover {
+            background: #292929;
+            color: #fff;
+        }
+        .sidebar ul li i {
+            margin-right: 8px;
+            font-size: 15px;
+        }
+        .main-content {
+            margin-left: 200px;
+            padding: 24px 0 0 0;
+        }
+        .welcome-box {
+            background: #232323;
+            border-radius: 14px;
+            margin: 0 18px 15px 18px;
+            padding: 18px 18px 8px 18px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+        }
+        .welcome-box h2 {
+            color: #ffb300;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+        }
+        .welcome-box p {
+            color: #ffd54f;
+            font-size: 13px;
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin: 18px 0 12px 18px;
+            color: #fff;
+            letter-spacing: 0.5px;
+        }
+        .product-list {
+            margin: 0 18px 18px 18px;
+        }
+        .product-card {
+            background: #232323;
+            border: 2px solid #00ff2a;
+            border-radius: 14px;
+            margin-bottom: 18px;
+            display: flex;
+            align-items: flex-start;
+            padding: 10px 14px 8px 14px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            position: relative;
+        }
+        .product-img {
+            width: 80px;
+            height: 55px;
+            object-fit: cover;
+            border-radius: 7px;
+            margin-right: 14px;
+            background: #333;
+        }
+        .product-info {
+            flex: 1;
+        }
+        .product-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 3px;
+            display: flex;
+            align-items: center;
+        }
+        .product-title .star {
+            color: #ffeb3b;
+            margin-left: 6px;
+            font-size: 15px;
+        }
+        .product-title .verified {
+            color: #00ff2a;
+            margin-left: 5px;
+            font-size: 13px;
+        }
+        .product-desc {
+            color: #e0e0e0;
+            font-size: 11px;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+        .get-likes {
+            color: #888;
+            font-size: 10px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        .get-likes i {
+            margin-right: 4px;
+            font-size: 12px;
+        }
+        .product-actions {
+            display: flex;
+            align-items: center;
+            margin-top: 4px;
+            position: relative;
+        }
+        .product-actions .likes, .product-actions .dislikes {
+            display: flex;
+            align-items: center;
+            font-size: 13px;
+            margin-right: 10px;
+            font-weight: 700;
+        }
+        .product-actions .likes i {
+            color: #00ff2a;
+            margin-right: 4px;
+            font-size: 13px;
+        }
+        .product-actions .dislikes i {
+            color: #ff2a2a;
+            margin-right: 4px;
+            font-size: 13px;
+        }
+        .product-actions .likes, .product-actions .dislikes {
+            color: #fff;
+        }
+        .product-actions .views {
+            display: flex;
+            align-items: center;
+            color: #aaa;
+            font-size: 12px;
+            position: absolute;
+            right: 0;
+            bottom: -4px;
+            font-weight: 600;
+        }
+        .product-actions .views i {
+            margin-right: 4px;
+            font-size: 12px;
+        }
+        @media (max-width: 700px) {
+            .main-content { margin-left: 0; }
+            .sidebar { position: static; width: 100%; height: auto; }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+        <h3 style="padding-left: 10px;">Darknet Home</h3>
+        <ul>
+            <li><i class="fa fa-book"></i> Catalogs</li>
+            <li><i class="fa fa-book-open"></i> E-books</li>
+            <li><i class="fa fa-envelope"></i> E-mail</li>
+            <li><i class="fa fa-user-secret"></i> Hacking</li>
+            <li><i class="fa fa-server"></i> Hosting</li>
+            <li><i class="fa fa-newspaper"></i> News</li>
+            <li><i class="fa fa-search"></i> Search</li>
+            <li><i class="fa fa-link"></i> Links Adult</li>
+            <li><i class="fa fa-mars"></i> Porn</li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="welcome-box">
+            <h2>Welcome to Darknet Home!</h2>
+            <p>Darknet Home is the largest and rapidly growing Tor hidden services directory.</p>
+        </div>
+        <div class="section-title">Best hidden services</div>
+        <div class="product-list">
+            <!-- Produk 1 -->
+            <div class="product-card">
+                <img src="images/lowernet.jpg" class="product-img" alt="Lowernet">
+                <div class="product-info">
+                    <div class="product-title">Lowernet <span class="star"><i class="fa fa-star"></i></span> <span class="verified"><i class="fa fa-check-circle"></i></span></div>
+                    <div class="product-desc">The Lowernet Directory, Serving the Tor Community Since 2016.</div>
+                    <div class="get-likes"><i class="fa fa-thumbs-up"></i> get more likes</div>
+                    <div class="product-actions">
+                        <span class="likes"><i class="fa fa-thumbs-up"></i> 98718</span>
+                        <span class="dislikes"><i class="fa fa-thumbs-down"></i> 919</span>
+                        <span class="views"><i class="fa fa-eye"></i> 1851221</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Produk 2 -->
+            <div class="product-card">
+                <img src="images/torlinks.jpg" class="product-img" alt="TOR LINKS">
+                <div class="product-info">
+                    <div class="product-title">TOR LINKS <span class="star"><i class="fa fa-star"></i></span> <span class="verified"><i class="fa fa-check-circle"></i></span></div>
+                    <div class="product-desc">TOR LINKS - Best Onion Link Collection.</div>
+                    <div class="get-likes"><i class="fa fa-thumbs-up"></i> get more likes</div>
+                    <div class="product-actions">
+                        <span class="likes"><i class="fa fa-thumbs-up"></i> 91432</span>
+                        <span class="dislikes"><i class="fa fa-thumbs-down"></i> 874</span>
+                        <span class="views"><i class="fa fa-eye"></i> 1846732</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Produk 3 -->
+            <div class="product-card">
+                <img src="images/botcoingenerator.jpg" class="product-img" alt="Bitcoin Generator">
+                <div class="product-info">
+                    <div class="product-title">Bitcoin Generator Exploit</div>
+                    <div class="product-desc">Bitcoin Generator - Earn Free Bitcoins in just a few moments without any investment! Use our Bitcoin Generator and you will receive free unlimited Bitcoin instantly!</div>
+                    <div class="product-actions">
+                        <span class="likes"><i class="fa fa-thumbs-up"></i> 10478</span>
+                        <span class="dislikes"><i class="fa fa-thumbs-down"></i> 49</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

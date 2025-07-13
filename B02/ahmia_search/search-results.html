@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmia - Search Results for: drugs</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            color: #333;
+            line-height: 1.5;
+            margin: 0;
+        }
+        
+        /* Header styling */
+        .top-bar {
+            background-color: #303030;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: sans-serif;
+            font-size: 30px;
+            color: #acb2b8;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .search-form-top {
+            display: flex;
+            flex: 0 1 300px;
+            margin-left: 10px;
+        }
+        
+        .search-form-top input {
+            flex: 1;
+            padding: 5px 10px;
+            border: none;
+            height: 30px;
+            font-size: 14px;
+        }
+        
+        .search-form-top button {
+            background-color: #c7ff70;
+            border: none;
+            color: #000;
+            padding: 5px 15px;
+            cursor: pointer;
+            height: 30px;
+            font-size: 14px;
+        }
+        
+        .nav-bar {
+            background-color: #303030;
+            padding: 5px 20px;
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid #444;
+        }
+        
+        .left-nav {
+            display: flex;
+        }
+        
+        .left-nav a {
+            color: #c0c0c0;
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 12px;
+        }
+        
+        .right-nav {
+            display: flex;
+        }
+        
+        .right-nav a {
+            color: #c0c0c0;
+            text-decoration: none;
+            margin-left: 15px;
+            font-size: 12px;
+        }
+        
+        /* Filter bar */
+        .filter-bar {
+            padding: 8px 20px 1px 10px;
+            border-bottom: 1px solid #ddd;
+            background-color: #f8f8f8;
+        }
+        
+        .filter-dropdown {
+            position: relative;
+            display: inline-block;
+                    }
+        
+        .filter-dropdown-btn {
+            display: inline-block;
+            padding: 1px 10px 5px 10px;
+            background-color: transparent;
+            color: #344054;
+            border: none;
+            font-size: 15px;
+            cursor: pointer;
+            position: relative;
+            font-weight: 500;
+        }
+        
+        .filter-dropdown-btn::after {
+            content: "▾";
+            margin-left: 5px;
+        }
+        
+        .filter-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+        
+        .filter-dropdown:hover .filter-dropdown-content {
+            display: block;
+        }
+        
+        .filter-dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .filter-dropdown-content a:hover {
+            background-color: #f1f1f1;
+        }
+        
+        /* Search results */
+        .search-info {
+            padding: 10px 20px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .search-results {
+            padding: 0 20px;
+        }
+        
+        .result-item {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .result-title {
+            display: block;
+            font-size: 20px;
+            color: #2b7a9a;
+            text-decoration: underline;
+            margin-bottom: 5px;
+            font-weight: 400;
+        }
+        
+        .result-title:hover {
+            color: #3498db;
+        }
+        
+        .result-url {
+            display: block;
+            font-size: 14px;
+            color: rgba(106, 156, 35, 0.9);
+            margin-bottom: 5px;
+            font-family: monospace;
+        }
+        
+        .result-date {
+            color: #777;
+            font-size: 13px;
+            margin-left: 5px;
+        }
+        
+        .result-description {
+            color: #555;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <h1 class="logo">Ahmia</h1>
+        <form class="search-form-top" action="search-results.html" method="get">
+            <input type="text" name="q" value="drugs">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    
+    <div class="nav-bar">
+        <div class="left-nav">
+            <a href="#">About Ahmia</a>
+            <a href="#">Add Service</a>
+        </div>
+        <div class="right-nav">
+            <a href="#">Contact</a>
+            <a href="#">Blacklist</a>
+        </div>
+    </div>
+    
+    <div class="filter-bar">
+        <div class="filter-dropdown">
+            <button class="filter-dropdown-btn">Any Time</button>
+            <div class="filter-dropdown-content">
+                <a href="#">Any Time</a>
+                <a href="#">Last Day</a>
+                <a href="#">Last Week</a>
+                <a href="#">Last Month</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="search-info">
+        <p>Omitted very similar entries. Displaying 20 matches in 5.66 seconds.</p>
+    </div>
+    
+    <div class="search-results">
+        <div class="result-item">
+            <a href="poison_pantry.html" class="result-title">Poison Pantry</a>
+            <p class="result-description">Professional marketplace specializing in various toxins and dangerous substances for specialized purposes. Offers comprehensive catalog with detailed descriptions, toxicity levels, and usage guidelines. Secure transactions with escrow system and discreet shipping worldwide.</p>
+            <span class="result-url">dwltorbitw3tdjskxn23j2mwz2f4q25j4ninl50dvttiy4xb6cqzikid.onion — <span class="result-date">1 month, 2 weeks —</span></span>
+        </div>
+        
+        <div class="result-item">
+            <a href="venusmarket.html" class="result-title">Venus Marketplace</a>
+            <p class="result-description">Venus Marketplace was established in 2018. It is among the best marketplaces of the Darknet. Escrow System is available to prevent Scam and Fraud. It gives importance to seller and buyer security. Sellers 100% verified.</p>
+            <span class="result-url">ly75dbzi2yrzkug2frgn42bp2unipjpyth3qopbthscunlpdtypi3tqd.onion — <span class="result-date">1 month, 2 weeks —</span></span>
+        </div>
+        
+        <div class="result-item">
+            <a href="darknethome.html" class="result-title">Darknet Home</a>
+            <p class="result-description">Comprehensive directory of darknet services and marketplaces. Features curated links to various categories including drugs, digital goods, and financial services. Updated regularly with security status and availability information.</p>
+            <span class="result-url">daunts5xir77tu3jg64wfbphzh7myfzqgg3uwlef5x4yroaxdcpniuyd.onion — <span class="result-date">1 month, 2 weeks —</span></span>
+        </div>
+        
+        <div class="result-item">
+            <a href="moline.html" class="result-title">MoLine - Monero cryptocurrency sales platform</a>
+            <p class="result-description">Secure and trusted Monero cryptocurrency trading platform. Offers fast transactions with low fees and high privacy. Supports various payment methods and available for global users.</p>
+            <span class="result-url">rx5dcuivx4zkv2pq37txkj7wgn4vsj3yqov6fnteaa7u2j3z6mifoxid.onion — <span class="result-date">2 weeks —</span></span>
+        </div>
+        
+        <div class="result-item">
+            <a href="hackerservice.html" class="result-title">HackerForHire - Professional Hacking Services</a>
+            <p class="result-description">Professional hacking services for various needs. Specialists in account recovery, penetration testing, and network security. Guaranteed secure and discreet with cryptocurrency payment options.</p>
+            <span class="result-url">docuy2acomn6bilcx2qm4gvc4l6s2q5vtyyg6m2uxv64jm4fo6gb7zid.onion — <span class="result-date">2 weeks —</span></span>
+        </div>
+        
+        <div class="result-item">
+            <a href="ruziamarket.html" class="result-title">RuziaMarket - Drugs & More</a>
+            <p class="result-description">One of the oldest marketplaces on the dark web. Escrow service, trusted vendors. Russian only.</p>
+            <span class="result-url">black2marcoptkudy.onion — <span class="result-date">3 weeks —</span></span>
+        </div>
+        
+        <div class="result-item">
+            <a href="homeliving.html" class="result-title">HomeLiving Market - Home & Living Products</a>
+            <p class="result-description">Affordable marketplace for home furniture, kitchen appliances, and home decor. Established in 2021 with verified sellers and secure payment options. Fast shipping available worldwide.</p>
+            <span class="result-url">libertymarket7zioikq4tgqspag36lnxhhzlg6xkdvfydm6f2ivrb5und.onion — <span class="result-date">2 months —</span></span>
+        </div>
+        
+        <div class="result-item">
+            <a href="cannabiskingdom.html" class="result-title">Cannabis Kingdom - Premium quality</a>
+            <p class="result-description">Specialized in high-quality cannabis products. Ships worldwide with stealth packaging.</p>
+            <span class="result-url">cannas74sdqkfm3nc.onion — <span class="result-date">3 weeks —</span></span>
+        </div>
+        
+        <div class="result-item">
+            <a href="greenroad.html" class="result-title">GreenRoad drugs delivery</a>
+            <p class="result-description">Fast and reliable drug delivery service. Operating since 2017. Multiple cryptocurrencies accepted.</p>
+            <span class="result-url">greenroaddw4myv3n.onion — <span class="result-date">1 month, 1 week —</span></span>
+        </div>
+        
+        <div class="result-item">
+            <a href="killer.html" class="result-title">Darkbay - Hire for kill3r</a>
+            <p class="result-description">We are a cyber team that provides services for hiring killers around the world. Predominantly we do contract killings. For several years we have been working in many countries as we have many hitmen all over the place and we continue to recruit them. We carry out other works, contact us and tell us about your task.</p>
+            <span class="result-url">darkbayz6dvhdohbgybqfhvqecbwz3flnjxvqjnnsd56vwdsekvr74qd.onion — <span class="result-date">2 months —</span></span>
+        </div>
+        
+        <div class="result-item">
+            <a href="dre@d.html" class="result-title">Dre@d Forum - Community Hub</a>
+            <p class="result-description">Active community forum for information sharing and discussions. Established in 2014, featuring various topics, trusted moderators, and comprehensive knowledge base for members.</p>
+            <span class="result-url">drugst5ve63v3zcce.onion — <span class="result-date">1 month —</span></span>
+        </div>
+        
+        <div class="result-item">
+            <a href="medistore.html" class="result-title">MediStore - Prescription drugs</a>
+            <p class="result-description">Secure marketplace for prescription medication. No prescription needed.</p>
+            <span class="result-url">pharmexn5xz2hpmtn.onion — <span class="result-date">2 weeks —</span></span>
+        </div>
+        
+        <div class="result-item">
+            <a href="bazaar_plastic.html" class="result-title">Bazaar Plastic - Largest Counterfeits Stores</a>
+            <p class="result-description">One of the largest marketplaces for counterfeit products. All transactions pass through Escrow service for buyer protection. Multiple currency options available including EUR, USD, GBP and others.</p>
+            <span class="result-url">dreamarchive7x5cfnvc3lyyybmgh5c7yrugv5d22xgpq7klbrmjidid.onion — <span class="result-date">6 months —</span></span>
+        </div>
+        
+        <div class="result-item">
+            <a href="big-blue-market.html" class="result-title">Big Blue Market - Worldwide Shipping</a>
+            <p class="result-description">Marketplace with focus on multiple substances. Ships internationally with tracking.</p>
+            <span class="result-url">bluemarketyqb7xck.onion — <span class="result-date">3 weeks —</span></span>
+        </div>
+        
+        <div class="result-item">
+            <a href="scamadvisor.html" class="result-title">Scam Advisor - Trusted vendor</a>
+            <p class="result-description">Specializing in Darknet Trusted vendors and scammers</p>
+            <span class="result-url">kingdomphm5i4x37k6gvlhxlfai3qvggvgybdivlwdwid5gn7fkqk2qd.onion — <span class="result-date">1 month —</span></span>
+        </div>
+        
+        <div class="result-item">
+            <a href="darkdoctor.html" class="result-title">Dark Doctor - Organ Transplant</a>
+            <p class="result-description">Professional human organ transplantation services with global donor network. Offering kidneys, livers, hearts and other organs with compatibility guarantee. Includes post-operative care and confidential procedures.</p>
+            <span class="result-url">drughub6kpiuwf6a.onion — <span class="result-date">2 weeks —</span></span>
+        </div>
+        
+        <div class="result-item">
+            <a href="mayvaneday.html" class="result-title">MayVaneDay Studios</a>
+            <p class="result-description">Digital library offering rare and hard-to-find books and writings. Search and download any literature you desire.</p>
+            <span class="result-url">mayvd24au5vina.onion — <span class="result-date">1 month —</span></span>
+        </div>
+
+        <div class="result-item">
+            <a href="beautifulshop.html" class="result-title">A beautiful shop for clients - Premium Pharmacy</a>
+            <p class="result-description">Your trusted marketplace for premium products and services. High-quality items with secure transactions and worldwide shipping. Best prices guaranteed.</p>
+            <span class="result-url">beautifulshop7x5cfnvc3lyyybmgh5c7yrugv5d22xgpq7klbrmjidid.onion — <span class="result-date">2 weeks —</span></span>
+        </div>
+        
+        <div class="result-item">
+            <a href="drugsfinder.html" class="result-title">DrugsFinder - Premium Substance Search</a>
+            <p class="result-description">Advanced search engine dedicated to finding pharmaceutical and recreational substances across darknet markets. Compare prices, vendors, and shipping options with secure browsing.</p>
+            <span class="result-url">torshopwbc2byfwnlanvmzjylz75nswrl6vas2j3jscj6iw6zpdj4ad.onion — <span class="result-date">3 weeks —</span></span>
+        </div>
+               
+        <div class="result-item">
+            <a href="hacker_community.html" class="result-title">Hacker Community</a>
+            <p class="result-description">Advanced hacking forum with marketplace for security tools and exploits. Includes educational resources and tutorials for ethical hacking and penetration testing.</p>
+            <span class="result-url">psychonautwzkd7lk.onion — <span class="result-date">2 weeks —</span></span>
+        </div>
+        
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get query parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const query = urlParams.get('q');
+            
+            // Update the search input
+            const searchInput = document.querySelector('.search-form-top input');
+            if (query && searchInput) {
+                searchInput.value = query;
+            }
+            
+            // If the query is not 'drugs' or 'drug', redirect to default results
+            if (query && !['drugs', 'drug'].includes(query.toLowerCase())) {
+                // Keep the page as is, or redirect to normal results
+                // window.location.href = "generic-results.html?q=" + encodeURIComponent(query);
+            }
+        });
+    </script>
+</body>
+</html> 

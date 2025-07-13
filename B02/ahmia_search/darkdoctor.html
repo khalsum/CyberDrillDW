@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rxworld</title>
+    <style>
+        body {
+            background: #181c22;
+            color: #fff;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header-bg {
+            width: 100vw;
+            min-height: 220px;
+            background: #232323;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .header-bg .bg-row {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            top: 0;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            z-index: 1;
+        }
+        .header-bg .bg-row img {
+            height: 220px;
+            opacity: 0.95;
+            flex: 1 1 0;
+            min-width: 180px;
+            object-fit: contain;
+        }
+        .header-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            text-align: center;
+            padding: 30px 0 10px 0;
+        }
+        .header-content .logo {
+            font-size: 38px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #fff;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 8px #000a;
+        }
+        .header-content .subtitle {
+            color: #fff;
+            font-size: 20px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            text-shadow: 0 2px 8px #000a;
+        }
+        .header-content .desc {
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 0;
+            text-shadow: 0 2px 8px #000a;
+        }
+        
+        /* Marketplace status bar */
+        .status-bar {
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            color: white;
+            padding: 8px 0;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .main-title {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 32px 0 18px 0;
+            text-align: center;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 32px;
+            padding: 0 32px 32px 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .product-card {
+            background: #23272f;
+            border-radius: 16px;
+            box-shadow: 0 2px 16px #0006;
+            padding: 28px 18px 18px 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+        .product-card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 6px 32px #000a;
+        }
+        .product-card img {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            background: #181c22;
+            box-shadow: 0 2px 8px #0005;
+        }
+        .product-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #fff;
+            text-align: center;
+        }
+        .product-desc {
+            font-size: 14px;
+            color: #bfc9d1;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .product-price {
+            font-size: 15px;
+            color: #bfc9d1;
+            margin-bottom: 14px;
+        }
+        
+        /* Rating stars */
+        .rating {
+            display: flex;
+            gap: 2px;
+            margin-bottom: 10px;
+            align-items: center;
+        }
+        .star {
+            color: #FFD700;
+            font-size: 14px;
+        }
+        .rating-count {
+            font-size: 12px;
+            color: #888;
+            margin-left: 5px;
+        }
+        
+        /* Seller info */
+        .seller-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            font-size: 12px;
+            color: #4CAF50;
+        }
+        .seller-badge {
+            background: #4CAF50;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 10px;
+            font-size: 10px;
+        }
+        
+        /* Order status indicator */
+        .order-status {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #2196F3;
+            color: white;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            opacity: 0.9;
+        }
+        
+        .buy-btn {
+            background: #ff3c00;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 7px 22px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 6px;
+        }
+        .buy-btn:hover {
+            background: #ff5e2d;
+        }
+        
+        /* How do we work section */
+        .how-section {
+            background: #181c22;
+            border-radius: 18px;
+            margin: 0 auto 32px auto;
+            max-width: 700px;
+            box-shadow: 0 2px 16px #0006;
+            padding: 36px 24px 24px 24px;
+            text-align: center;
+        }
+        .how-section h2 {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #fff;
+        }
+        .how-section p {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 18px;
+        }
+        .see-more-btn {
+            background: #ff3c00;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 28px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 18px;
+            margin-top: 8px;
+            transition: background 0.2s;
+        }
+        .see-more-btn:hover {
+            background: #ff5e2d;
+        }
+        .how-details {
+            background: #3a2320;
+            color: #fff;
+            border-radius: 12px;
+            margin-top: 18px;
+            padding: 24px 18px 18px 18px;
+            text-align: left;
+            font-size: 1.1rem;
+            display: none;
+        }
+        .how-details.active {
+            display: block;
+        }
+        .how-details strong {
+            color: #fff;
+        }
+        
+        /* Order process section */
+        .order-process {
+            background: #23272f;
+            border-radius: 12px;
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 24px;
+        }
+        .order-process h3 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+            font-size: 18px;
+            text-align: center;
+        }
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .step {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            padding: 15px;
+            background: #181c22;
+            border-radius: 8px;
+            border-left: 3px solid #4CAF50;
+        }
+        .step-number {
+            background: #4CAF50;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px auto;
+            font-weight: bold;
+        }
+        .step-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+        .step-desc {
+            font-size: 12px;
+            color: #ccc;
+        }
+        
+        /* Buyer protection */
+        .protection-info {
+            background: #23272f;
+            border-radius: 12px;
+            margin: 20px auto;
+            max-width: 700px;
+            padding: 20px;
+            text-align: center;
+        }
+        .protection-info h3 {
+            color: #4CAF50;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        .protection-features {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .protection-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: #ccc;
+        }
+        .protection-icon {
+            color: #4CAF50;
+            font-size: 16px;
+        }
+        
+        @media (max-width: 1100px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 900px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+            .header-bg .bg-row img { height: 120px; }
+            .process-steps {
+                flex-direction: column;
+            }
+            .protection-features {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-bg">
+        <div class="bg-row">
+            <img src="images/organ/docterbg.png" alt="doctor">
+            <img src="images/organ/docterbg.png" alt="doctor">
+            <img src="images/organ/docterbg.png" alt="doctor">
+            <img src="images/organ/docterbg.png" alt="doctor">
+            <img src="images/organ/docterbg.png" alt="doctor">
+            <img src="images/organ/docterbg.png" alt="doctor">
+            <img src="images/organ/docterbg.png" alt="doctor">
+        </div>
+        <div class="header-content">
+            <div class="logo">Dark Doctor</div>
+            <div class="subtitle">Specialized in Advanced Organ Transplant Surgery</div>
+            <div class="desc">Your trusted clinic for life-saving organ transplant procedures.</div>
+        </div>
+    </div>
+    
+    <!-- Marketplace status -->
+    <div class="status-bar">
+        🔒 Secure Payment • 📦 Order Protection • ⭐ Verified Seller
+    </div>
+    
+    <div class="main-title">Available Organ Transplants</div>
+    <div class="products-grid">
+        <div class="product-card">
+            <div class="order-status">In Stock</div>
+            <img src="images/organ/blood.png" alt="Blood Bag">
+            <div class="product-title">Blood Bag</div>
+            <div class="seller-info">
+                <span class="seller-badge">Verified</span>
+                <span>Dark Doctor Clinic</span>
+            </div>
+            <div class="rating">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="rating-count">(127)</span>
+            </div>
+            <div class="product-price">Price: 0.03 BTC</div>
+            <a href="patient-form.html" class="buy-btn" style="text-decoration:none;display:inline-block;text-align:center;">Order Now</a>
+        </div>
+        <div class="product-card">
+            <div class="order-status">In Stock</div>
+            <img src="images/organ/bone.png" alt="Bone Marrow">
+            <div class="product-title">Bone Marrow</div>
+            <div class="seller-info">
+                <span class="seller-badge">Verified</span>
+                <span>Dark Doctor Clinic</span>
+            </div>
+            <div class="rating">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">☆</span>
+                <span class="rating-count">(89)</span>
+            </div>
+            <div class="product-price">Price: 0.4 BTC</div>
+            <a href="patient-form.html" class="buy-btn" style="text-decoration:none;display:inline-block;text-align:center;">Order Now</a>
+        </div>
+        <div class="product-card">
+            <div class="order-status">In Stock</div>
+            <img src="images/organ/cornea.png" alt="Cornea">
+            <div class="product-title">Cornea</div>
+            <div class="seller-info">
+                <span class="seller-badge">Verified</span>
+                <span>Dark Doctor Clinic</span>
+            </div>
+            <div class="rating">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="rating-count">(156)</span>
+            </div>
+            <div class="product-price">Price: 0.2 BTC</div>
+            <a href="patient-form.html" class="buy-btn" style="text-decoration:none;display:inline-block;text-align:center;">Order Now</a>
+        </div>
+        <div class="product-card">
+            <div class="order-status">In Stock</div>
+            <img src="images/organ/heart.png" alt="Heart">
+            <div class="product-title">Heart</div>
+            <div class="seller-info">
+                <span class="seller-badge">Verified</span>
+                <span>Dark Doctor Clinic</span>
+            </div>
+            <div class="rating">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="rating-count">(203)</span>
+            </div>
+            <div class="product-price">Price: 2 BTC</div>
+            <a href="patient-form.html" class="buy-btn" style="text-decoration:none;display:inline-block;text-align:center;">Order Now</a>
+        </div>
+        <div class="product-card">
+            <div class="order-status">In Stock</div>
+            <img src="images/organ/intestine.png" alt="Intestine">
+            <div class="product-title">Intestine</div>
+            <div class="seller-info">
+                <span class="seller-badge">Verified</span>
+                <span>Dark Doctor Clinic</span>
+            </div>
+            <div class="rating">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">☆</span>
+                <span class="rating-count">(67)</span>
+            </div>
+            <div class="product-price">Price: 1.5 BTC</div>
+            <a href="patient-form.html" class="buy-btn" style="text-decoration:none;display:inline-block;text-align:center;">Order Now</a>
+        </div>
+        <div class="product-card">
+            <div class="order-status">In Stock</div>
+            <img src="images/organ/kidneys.png" alt="Kidneys">
+            <div class="product-title">Kidneys</div>
+            <div class="seller-info">
+                <span class="seller-badge">Verified</span>
+                <span>Dark Doctor Clinic</span>
+            </div>
+            <div class="rating">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="rating-count">(178)</span>
+            </div>
+            <div class="product-price">Price: 1 BTC</div>
+            <a href="patient-form.html" class="buy-btn" style="text-decoration:none;display:inline-block;text-align:center;">Order Now</a>
+        </div>
+        <div class="product-card">
+            <div class="order-status">In Stock</div>
+            <img src="images/organ/liver.png" alt="Liver">
+            <div class="product-title">Liver</div>
+            <div class="seller-info">
+                <span class="seller-badge">Verified</span>
+                <span>Dark Doctor Clinic</span>
+            </div>
+            <div class="rating">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="rating-count">(145)</span>
+            </div>
+            <div class="product-price">Price: 1.2 BTC</div>
+            <a href="patient-form.html" class="buy-btn" style="text-decoration:none;display:inline-block;text-align:center;">Order Now</a>
+        </div>
+        <div class="product-card">
+            <div class="order-status">In Stock</div>
+            <img src="images/organ/lungs.png" alt="Lungs">
+            <div class="product-title">Lungs</div>
+            <div class="seller-info">
+                <span class="seller-badge">Verified</span>
+                <span>Dark Doctor Clinic</span>
+            </div>
+            <div class="rating">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="rating-count">(192)</span>
+            </div>
+            <div class="product-price">Price: 2 BTC</div>
+            <a href="patient-form.html" class="buy-btn" style="text-decoration:none;display:inline-block;text-align:center;">Order Now</a>
+        </div>
+        <div class="product-card">
+            <div class="order-status">In Stock</div>
+            <img src="images/organ/pancreas.png" alt="Pancreas">
+            <div class="product-title">Pancreas</div>
+            <div class="seller-info">
+                <span class="seller-badge">Verified</span>
+                <span>Dark Doctor Clinic</span>
+            </div>
+            <div class="rating">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">☆</span>
+                <span class="rating-count">(78)</span>
+            </div>
+            <div class="product-price">Price: 1.8 BTC</div>
+            <a href="patient-form.html" class="buy-btn" style="text-decoration:none;display:inline-block;text-align:center;">Order Now</a>
+        </div>
+        <div class="product-card">
+            <div class="order-status">In Stock</div>
+            <img src="images/organ/skin.png" alt="Skin">
+            <div class="product-title">Skin</div>
+            <div class="seller-info">
+                <span class="seller-badge">Verified</span>
+                <span>Dark Doctor Clinic</span>
+            </div>
+            <div class="rating">
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="star">★</span>
+                <span class="rating-count">(134)</span>
+            </div>
+            <div class="product-price">Price: 0.6 BTC</div>
+            <a href="patient-form.html" class="buy-btn" style="text-decoration:none;display:inline-block;text-align:center;">Order Now</a>
+        </div>
+    </div>
+    
+    <!-- Order process section -->
+    <div class="order-process">
+        <h3>📋 How Orders Work</h3>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-title">Place Order</div>
+                <div class="step-desc">Select your organ and complete payment</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-title">Payment Held</div>
+                <div class="step-desc">Funds secured until service completion</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-title">Service Delivery</div>
+                <div class="step-desc">Medical team contacts you for procedure</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-title">Payment Released</div>
+                <div class="step-desc">Funds released after successful completion</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Buyer protection -->
+    <div class="protection-info">
+        <h3>🛡️ Buyer Protection</h3>
+        <div class="protection-features">
+            <div class="protection-item">
+                <span class="protection-icon">🔒</span>
+                <span>Secure Payment</span>
+            </div>
+            <div class="protection-item">
+                <span class="protection-icon">📦</span>
+                <span>Order Protection</span>
+            </div>
+            <div class="protection-item">
+                <span class="protection-icon">⭐</span>
+                <span>Verified Seller</span>
+            </div>
+            <div class="protection-item">
+                <span class="protection-icon">📞</span>
+                <span>24/7 Support</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="how-section">
+        <h2>HOW DO WE WORK?</h2>
+        <p>We specialize in performing organ transplant surgeries and providing ethically sourced organs.</p>
+        <button class="see-more-btn" onclick="toggleHowDetails()">See More</button>
+        <div class="how-details" id="how-details">
+            <div style="text-align: center; font-size: 20px;"><b>Key Aspects of Our Services:</b></div><br>
+            <strong>Confidentiality:</strong> Your privacy is our priority. We ensure total anonymity at every stage of the process.<br><br>
+            <strong>Organ Availability:</strong> We offer a variety of organs ready for transplant, following strict preservation and quality standards.<br><br>
+            <strong>Medical Expertise:</strong> Our team consists of highly qualified and experienced transplant surgeons.<br><br>
+            <strong>Secure Payment Process:</strong> All payments are processed through our secure marketplace system. Your funds are held until the service is successfully completed, ensuring complete protection for both parties.<br><br>
+            <strong>Order Protection:</strong> Every order is protected by our comprehensive buyer protection system. If the service cannot be completed as promised, your payment will be fully refunded.<br><br>
+            <strong>Contact Only After Purchase:</strong> To avoid issues and maintain anonymity, contact with our medical team occurs only after payment confirmation. This measure ensures that only serious buyers proceed with the procedure.<br><br>
+            <strong>Option for Surgery at Your Chosen Location:</strong> After purchase, you can choose to have one of our doctors perform the procedure at a location of your choice. Our team will evaluate the safety and feasibility of the environment before the operation.<br><br>
+            <strong>Customer Support:</strong> Our dedicated support team is available 24/7 to assist with any questions or concerns throughout the entire process.
+        </div>
+    </div>
+    <script>
+        function toggleHowDetails() {
+            var details = document.getElementById('how-details');
+            details.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
