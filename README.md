@@ -32,6 +32,8 @@ cd B02
 4. Masuk ke folder hasil ekstrak dan mulai praktik.
 
 
+-------
+file ova: https://drive.google.com/drive/folders/1dEWkTF2QTuQOYG9TIVzgQ0CRDq57riav
 
 
 
