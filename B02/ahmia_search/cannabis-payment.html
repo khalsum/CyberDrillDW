@@ -277,13 +277,16 @@
             </div>
             
             <div class="payment-methods">
-                <h3 style="margin-top: 0; color: #333;">💳 Payment Method</h3>
+                <h3 style="margin-top: 0; color: #333;">💳 Direct Payment (No Escrow)</h3>
+                <div style="background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px; padding: 15px; margin-bottom: 20px; color: #856404;">
+                    <strong>⚠️ Direct Payment Notice:</strong> This is a direct payment to the seller. No escrow system is used. Payment will be processed immediately upon confirmation.
+                </div>
                 <div class="payment-method selected" onclick="selectPayment('bitcoin')">
                     <div class="payment-method-header">
                         <div class="payment-icon">₿</div>
                         <div class="payment-info">
-                            <div class="payment-name">Bitcoin (BTC)</div>
-                            <div class="payment-desc">Secure cryptocurrency payment</div>
+                            <div class="payment-name">Bitcoin (BTC) - Direct Payment</div>
+                            <div class="payment-desc">Direct payment to seller (no escrow protection)</div>
                         </div>
                     </div>
                     <div class="bitcoin-address show" id="bitcoinAddress">
@@ -295,7 +298,7 @@
             
             <div class="payment-actions">
                 <div id="statusMessage"></div>
-                <button class="pay-btn" id="payBtn" onclick="processPayment()">Confirm Payment</button>
+                <button class="pay-btn" id="payBtn" onclick="processPayment()">Confirm Direct Payment</button>
                 <button class="cancel-btn" onclick="cancelPayment()">Cancel Order</button>
             </div>
         </div>
@@ -350,20 +353,20 @@
             });
         }
         
-        // Process payment
+        // Process direct payment (no escrow)
         function processPayment() {
             const payBtn = document.getElementById('payBtn');
             payBtn.disabled = true;
-            payBtn.textContent = 'Processing...';
+            payBtn.textContent = 'Processing Direct Payment...';
             
-            // Simulate payment processing
+            // Simulate direct payment processing (no escrow)
             setTimeout(() => {
-                showStatus('Payment received! Processing your order...', 'success');
+                showStatus('Direct payment received! Order confirmed immediately...', 'success');
                 setTimeout(() => {
                     // Clear product data
                     sessionStorage.removeItem('cannabisProductData');
                     // Redirect to success page or show success message
-                    alert('Payment successful! Your order will be shipped within 24 hours.');
+                    alert('Direct payment successful! Your order is confirmed and will be shipped within 24 hours. (No escrow protection)');
                     window.location.href = 'cannabiskingdom.html';
                 }, 2000);
             }, 3000);
